@@ -1,0 +1,83 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: black;
+  font-family: "Verdana", "Geneva", sans-serif;
+  color: white;
+  height: 100vh;
+}
+
+.mainGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  gap: 5px;
+  text-align: center;
+  min-height: 100%;
+  grid-template-areas: "header" "main" "footer";
+}
+
+.header {
+  grid-area: header;
+  font-size: 3rem;
+}
+
+.footer {
+  grid-area: footer;
+  font-size: 1.5rem;
+  margin: 20px auto;
+}
+
+.main {
+  grid-area: main;
+  margin: 10px;
+  padding: 10px;
+}
+.main .subGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 5px 5px;
+  grid-auto-flow: row;
+  font-size: 2rem;
+  grid-template-areas: "uno dos tres" "cuatro cinco seis" "siete ocho nueve";
+}
+.main .uno {
+  grid-area: uno;
+}
+.main .dos {
+  grid-area: dos;
+}
+.main .tres {
+  grid-area: tres;
+}
+.main .cuatro {
+  grid-area: cuatro;
+}
+.main .cinco {
+  grid-area: cinco;
+}
+.main .seis {
+  grid-area: seis;
+}
+.main .siete {
+  grid-area: siete;
+}
+.main .ocho {
+  grid-area: ocho;
+}
+.main .nueve {
+  grid-area: nueve;
+}
+.main div {
+  width: 500px;
+  height: 100px;
+  padding: 2px;
+  margin: 10px;
+}
+
+/*# sourceMappingURL=style.css.map */
