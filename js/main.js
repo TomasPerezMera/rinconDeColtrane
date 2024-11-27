@@ -8,7 +8,6 @@ alert("1 - WIP - $100\n2 - WIP - $200\n3 - WIP - $300\n4 - WIP - $400\n5 - WIP -
 alert("Muy bien! Ahora que has visto la selección disponible, es momento de que elijas tus álbumes deseados.\nTambién podrás solicitar ver la lista nuevamente, o despedirte del sitio sin realizar una compra (aunque no recomendamos que te vayas con las manos vacías -- la obra de Coltrane vuela!)")
 
 let precioCarrito = 0;
-let primerSeleccion = parseInt(prompt("Selecciona el artículo deseado. Puedes cancelar la compra marcando 0."));
 let seguirComprando = true;
 
 function compraLoop() {
@@ -22,6 +21,7 @@ function compraLoop() {
 }
 
 function exitLoop() {
+    /*Falta salida real del loop, sólo reinicia el programa por ahora*/
     const repetir = confirm("¿Deseas repetir el proceso de compra?");
     if(repetir) {
         alert("Oído cocina! Un dulce saxofón nos transporta al principio del proceso de compras...")
@@ -38,38 +38,44 @@ function finalizarCompra() {
 }
 
 function procesoCompra() {
+    let primerSeleccion = parseInt(prompt("Selecciona el artículo deseado. Puedes cancelar la compra marcando 0."));
     switch(primerSeleccion) {
         case 1:
             precioCarrito = 100;
             alert("Has añadido el ítem 1: WIP a tu carrito!")
             compraLoop();
+            break;
         case 2:
             precioCarrito = 200;
             alert("Has añadido el ítem 2: WIP a tu carrito!")
             compraLoop();
+            break;
         case 3:
             precioCarrito = 300;
             alert("Has añadido el ítem 3: WIP a tu carrito!")
             compraLoop();
+            break;
         case 4:
             precioCarrito = 400;
             alert("Has añadido el ítem 4: WIP a tu carrito!")
             compraLoop();
+            break;
         case 5:
             precioCarrito = 500;
             alert("Has añadido el ítem 5: WIP a tu carrito!")
             compraLoop();
-        break;
+            break;
         case 0:
             if(precioCarrito == 0) {
                 alert("¡Te esperamos aquí para la próxima ocasión de despilfarro musical!")
             } else {
                 finalizarCompra();
             }
-        break;
+            break;
         default:
             alert("La selección ingresada no es válida! Recuerda, sólo aceptamos números del 1 al 9, y 0 para finalizar tu compra.");
             procesoCompra();
+            break;
     }
 }
 
