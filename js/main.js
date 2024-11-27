@@ -15,7 +15,7 @@ function compraLoop() {
     if(seguirComprando) {
         procesoCompra();
     } else {
-        alert("Muchas gracias por tu compra! El precio total de tu carrito es: " + precioCarrito)
+        alert("Muchas gracias por tu compra! El precio total de tu carrito es: $" + precioCarrito)
         finalizarCompra();
     }
 }
@@ -41,28 +41,48 @@ function procesoCompra() {
     let primerSeleccion = parseInt(prompt("Selecciona el artículo deseado. Puedes cancelar la compra marcando 0."));
     switch(primerSeleccion) {
         case 1:
-            precioCarrito = 100;
+            precioCarrito += 100;
             alert("Has añadido el ítem 1: WIP a tu carrito!")
             compraLoop();
             break;
         case 2:
-            precioCarrito = 200;
+            precioCarrito += 200;
             alert("Has añadido el ítem 2: WIP a tu carrito!")
             compraLoop();
             break;
         case 3:
-            precioCarrito = 300;
+            precioCarrito += 300;
             alert("Has añadido el ítem 3: WIP a tu carrito!")
             compraLoop();
             break;
         case 4:
-            precioCarrito = 400;
+            precioCarrito += 400;
             alert("Has añadido el ítem 4: WIP a tu carrito!")
             compraLoop();
             break;
         case 5:
-            precioCarrito = 500;
+            precioCarrito += 500;
             alert("Has añadido el ítem 5: WIP a tu carrito!")
+            compraLoop();
+            break;
+        case 6:
+            precioCarrito += 600;
+            alert("Has añadido el ítem 6: WIP a tu carrito!")
+            compraLoop();
+            break;
+        case 7:
+            precioCarrito += 700;
+            alert("Has añadido el ítem 7: WIP a tu carrito!")
+            compraLoop();
+            break;
+        case 8:
+            precioCarrito += 800;
+            alert("Has añadido el ítem 8: WIP a tu carrito!")
+            compraLoop();
+            break;
+        case 9:
+            precioCarrito += 900;
+            alert("Has añadido el ítem 9: WIP a tu carrito!")
             compraLoop();
             break;
         case 0:
