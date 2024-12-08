@@ -1,13 +1,14 @@
 /*Inventario del Catálogo*/
 
-function Album(id, name, year, price) {
-    this.id = id;
-    this.name = name;
-    this.year = year;
-    this.price = price;
+class Album {
+    constructor(id, name, year, price) {
+        this.id = id;
+        this.name = name;
+        this.year = year;
+        this.price = price;
+    }
 }
 
-const cero = new Album(0, "NaN", 1, 1)
 const uno = new Album(1, "Blue Train", 1957, 30);
 const dos = new Album(2, "Soultrane", 1958, 27);
 const tres = new Album(3, "Giant Steps", 1959, 48);
@@ -19,7 +20,7 @@ const ocho = new Album(8, "Meditations", 1965, 38);
 const nueve = new Album(9, "Ascension", 1966, 27);
 
 
-const catalogo = [cero, uno, dos, tres, cuatro, cinco, seis, siete, ocho, nueve];
+const catalogo = [uno, dos, tres, cuatro, cinco, seis, siete, ocho, nueve];
 
 const itemCounts = {};
 
@@ -57,7 +58,7 @@ function compraLoop() {
     if(seguirComprando) {
         procesoCompra();
     } else {
-        alert("Muchas gracias por tu compra! El precio total de tu carrito es: $" + precioCarrito)
+        alert("Muchas gracias por tu compra! El precio total de tu carrito es: $" + (precioCarrito*1100))
         finalizarCompra();
     }
 }
@@ -73,7 +74,7 @@ function exitLoop() {
 }
 
 function finalizarCompra() {
-    alert("Muy bien! Tu orden ha sido recibida con éxito... Y gracias a la magia del Santo Coltrane (y sin ninguna relación a que ésta sea la versión 1 del proyecto...), ¡te vas a llevar los ítems de tu carrito, de forma GRATUITA!\n¿¡No dan ganas de tocar un sólo de saxofón de 30 minutos de tanta alegría?!");
+    alert("Muy bien! Tu orden ha sido recibida con éxito... Y gracias a la magia del Santo Coltrane, ¡te vas a llevar los ítems de tu carrito, de forma GRATUITA!\n¿¡No dan ganas de tocar un sólo de saxofón de 30 minutos de tanta alegría?!");
     exitLoop();
 }
 
@@ -86,48 +87,48 @@ function procesoCompra() {
     primerSeleccion = parseInt(primerSeleccion);
     switch(primerSeleccion) {
         case 1:
-            precioCarrito += 100;
-            alert("Has añadido el ítem 1: WIP a tu carrito!")
+            precioCarrito += uno.price;
+            alert("Has añadido el ítem: "+ uno.name +" a tu carrito!")
             compraLoop();
             break;
         case 2:
-            precioCarrito += 200;
-            alert("Has añadido el ítem 2: WIP a tu carrito!")
+            precioCarrito += dos.price;
+            alert("Has añadido el ítem: "+ dos.name +" a tu carrito!")
             compraLoop();
             break;
         case 3:
-            precioCarrito += 300;
-            alert("Has añadido el ítem 3: WIP a tu carrito!")
+            precioCarrito += tres.price;
+            alert("Has añadido el ítem: "+ tres.name +" a tu carrito!")
             compraLoop();
             break;
         case 4:
-            precioCarrito += 400;
-            alert("Has añadido el ítem 4: WIP a tu carrito!")
+            precioCarrito += cuatro.price;
+            alert("Has añadido el ítem: "+ cuatro.name +" a tu carrito!")
             compraLoop();
             break;
         case 5:
-            precioCarrito += 500;
-            alert("Has añadido el ítem 5: WIP a tu carrito!")
+            precioCarrito += cinco.price;
+            alert("Has añadido el ítem: "+ cinco.name +" a tu carrito!")
             compraLoop();
             break;
         case 6:
-            precioCarrito += 600;
-            alert("Has añadido el ítem 6: WIP a tu carrito!")
+            precioCarrito += seis.price;
+            alert("Has añadido el ítem: "+ seis.name +" a tu carrito!")
             compraLoop();
             break;
         case 7:
-            precioCarrito += 700;
-            alert("Has añadido el ítem 7: WIP a tu carrito!")
+            precioCarrito += siete.price;
+            alert("Has añadido el ítem: "+ siete.name +" a tu carrito!")
             compraLoop();
             break;
         case 8:
-            precioCarrito += 800;
-            alert("Has añadido el ítem 8: WIP a tu carrito!")
+            precioCarrito += ocho.price;
+            alert("Has añadido el ítem: "+ ocho.name +" a tu carrito!")
             compraLoop();
             break;
         case 9:
-            precioCarrito += 900;
-            alert("Has añadido el ítem 9: WIP a tu carrito!")
+            precioCarrito += nueve.price;
+            alert("Has añadido el ítem: "+ nueve.name +" a tu carrito!")
             compraLoop();
             break;
         case 0:
@@ -150,9 +151,21 @@ alert("Bienvenido al rincón de Coltrane! Un pequeño, pero importante rincón d
 
 alert("A continuación, procederemos a listar los ítems disponibles. Se permite un máximo de 3 unidades por cada compra - elije con cuidado!")
 
-alert("1 - WIP - $100\n2 - WIP - $200\n3 - WIP - $300\n4 - WIP - $400\n5 - WIP - $500\n6 - WIP - $600\n7 - WIP - $700\n8 - WIP - $800\n9 - WIP - $900\n")
 
-alert("Muy bien! Ahora que has visto la selección disponible, es momento de que elijas tus álbumes deseados.\nTambién podrás solicitar ver la lista nuevamente, o despedirte del sitio sin realizar una compra (aunque no recomendamos que te vayas con las manos vacías -- la obra de Coltrane vuela!)")
+
+function mostrarCatalogo() {
+    const catalogoContent = "";
+    for (const item of catalogo) {
+        catalogoContent += "Nombre: ${item.name}, Precio: $${item.price*1100}\n";
+    }
+    console.log(catalogoContent);
+}
+
+mostrarCatalogo(catalogo);
+
+/*
+alert("1 - WIP - $100\n2 - WIP - $200\n3 - WIP - $300\n4 - WIP - $400\n5 - WIP - $500\n6 - WIP - $600\n7 - WIP - $700\n8 - WIP - $800\n9 - WIP - $900\n")
+*/
 
 procesoCompra();
 
