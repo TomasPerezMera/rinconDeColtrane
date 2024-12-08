@@ -1,11 +1,28 @@
+/*Inventario del Catálogo*/
 
-alert("Bienvenido al rincón de Coltrane! Un pequeño, pero importante rincón de Internet, donde podrás adquirir algunos de los álbumes más célebres del legendario saxofonista.")
+function Album(id, name, year, price) {
+    this.id = id;
+    this.name = name;
+    this.year = year;
+    this.price = price;
+}
 
-alert("A continuación, procederemos a listar los ítems disponibles. Se permite un máximo de 3 unidades por cada compra - elije con cuidado!")
+const cero = new Album(0, "NaN", 1, 1)
+const uno = new Album(1, "Blue Train", 1957, 30);
+const dos = new Album(2, "Soultrane", 1958, 27);
+const tres = new Album(3, "Giant Steps", 1959, 48);
+const cuatro = new Album(4, "Thelonious Monk with John Coltrane", 1961, 24);
+const cinco = new Album(5, "My Favorite Things", 1961, 40);
+const seis = new Album(6, "John Coltrane and Johnny Hartman", 1963, 45);
+const siete = new Album(7, "A Love Supreme", 1964, 50);
+const ocho = new Album(8, "Meditations", 1965, 38);
+const nueve = new Album(9, "Ascension", 1966, 27);
 
-alert("1 - WIP - $100\n2 - WIP - $200\n3 - WIP - $300\n4 - WIP - $400\n5 - WIP - $500\n6 - WIP - $600\n7 - WIP - $700\n8 - WIP - $800\n9 - WIP - $900\n")
 
-alert("Muy bien! Ahora que has visto la selección disponible, es momento de que elijas tus álbumes deseados.\nTambién podrás solicitar ver la lista nuevamente, o despedirte del sitio sin realizar una compra (aunque no recomendamos que te vayas con las manos vacías -- la obra de Coltrane vuela!)")
+const catalogo = [cero, uno, dos, tres, cuatro, cinco, seis, siete, ocho, nueve];
+
+
+/*Lógica del E-Commerce*/
 
 let precioCarrito = 0;
 let seguirComprando = true;
@@ -21,14 +38,12 @@ function compraLoop() {
 }
 
 function exitLoop() {
-    /*Falta salida real del loop, sólo reinicia el programa por ahora*/
     const repetir = confirm("¿Deseas repetir el proceso de compra?");
     if(repetir) {
         alert("Oído cocina! Un dulce saxofón nos transporta al principio del proceso de compras...")
         procesoCompra();
     } else {
-        alert("Esperamos que estés satisfecho con la compra!\nPero, como nunca se puede tener suficiente Coltrane en la vida, procederemos a recargar la página, a modo de tentar a tus deseos...")
-        location.reload();
+        alert("Esperamos que estés satisfecho con la compra!\nRecuerda que puedes continuar explorando nuestro sitio, para llevarte los mejores álbumes que el jazz tiene para ofrecer.")
     }
 }
 
@@ -99,4 +114,15 @@ function procesoCompra() {
     }
 }
 
+
+
+alert("Bienvenido al rincón de Coltrane! Un pequeño, pero importante rincón de Internet, donde podrás adquirir algunos de los álbumes más célebres del legendario saxofonista.")
+
+alert("A continuación, procederemos a listar los ítems disponibles. Se permite un máximo de 3 unidades por cada compra - elije con cuidado!")
+
+alert("1 - WIP - $100\n2 - WIP - $200\n3 - WIP - $300\n4 - WIP - $400\n5 - WIP - $500\n6 - WIP - $600\n7 - WIP - $700\n8 - WIP - $800\n9 - WIP - $900\n")
+
+alert("Muy bien! Ahora que has visto la selección disponible, es momento de que elijas tus álbumes deseados.\nTambién podrás solicitar ver la lista nuevamente, o despedirte del sitio sin realizar una compra (aunque no recomendamos que te vayas con las manos vacías -- la obra de Coltrane vuela!)")
+
 procesoCompra();
+
