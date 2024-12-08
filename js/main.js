@@ -53,7 +53,12 @@ function finalizarCompra() {
 }
 
 function procesoCompra() {
-    let primerSeleccion = parseInt(prompt("Selecciona el artículo deseado. Puedes cancelar la compra marcando 0."));
+    let primerSeleccion = prompt("Selecciona el artículo deseado. Puedes cancelar la compra marcando 0.");
+    if (primerSeleccion === null) {
+        alert("Has cancelado la compra. ¡Te esperamos la próxima vez!");
+        return;
+    }
+    primerSeleccion = parseInt(primerSeleccion);
     switch(primerSeleccion) {
         case 1:
             precioCarrito += 100;

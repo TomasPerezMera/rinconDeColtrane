@@ -9,6 +9,17 @@ body {
   font-family: "Verdana", "Geneva", sans-serif;
   color: white;
   height: 100vh;
+  margin: 1vh 1vw;
+  padding: 1vh 1vw;
+}
+
+hr {
+  width: 80%;
+  height: 2px;
+  background: linear-gradient(to left, #2f2234, #1a2738);
+  margin: 40px auto;
+  border: none;
+  opacity: 0.8;
 }
 
 .mainGrid {
@@ -18,7 +29,7 @@ body {
   gap: 5px;
   text-align: center;
   min-height: 100%;
-  grid-template-areas: "header" "main" "footer";
+  grid-template-areas: "header" "hr1" "main" "hr2" "mainPhoto" "hr3" "footer";
 }
 
 .header {
@@ -26,10 +37,8 @@ body {
   font-size: 3rem;
 }
 
-.footer {
-  grid-area: footer;
-  font-size: 1.5rem;
-  margin: 20px auto;
+.hr1 {
+  grid-area: hr1;
 }
 
 .main {
@@ -78,6 +87,36 @@ body {
   height: 100px;
   padding: 2px;
   margin: 10px;
+}
+
+.hr2 {
+  grid-area: hr2;
+}
+
+.mainPhoto {
+  grid-area: mainPhoto;
+  height: auto;
+  max-width: 60vw;
+  padding: 5px;
+  margin: auto;
+}
+.mainPhoto img {
+  height: 100%;
+  max-width: 100%;
+  transition: 2s linear;
+}
+.mainPhoto img:hover {
+  transform: scale(1.15);
+}
+
+.hr3 {
+  grid-area: hr3;
+}
+
+.footer {
+  grid-area: footer;
+  font-size: 1.5rem;
+  margin: 20px auto;
 }
 
 /*# sourceMappingURL=style.css.map */

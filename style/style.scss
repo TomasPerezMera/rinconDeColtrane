@@ -1,15 +1,5 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
-body {
-    background-color: black;
-    font-family: "Verdana", "Geneva", sans-serif;
-    color: white;
-    height: 100vh;
-}
+@use "global";
 
 .mainGrid {
     display: grid;
@@ -20,16 +10,17 @@ body {
     min-height: 100%;
     grid-template-areas:
         "header"
+        "hr1"
         "main"
+        "hr2"
+        "mainPhoto"
+        "hr3"
         "footer";
 }
 .header { grid-area: header;
     font-size: 3rem;
 }
-.footer { grid-area: footer;
-    font-size: 1.5rem;
-    margin: 20px auto;
-}
+.hr1 { grid-area: hr1;}
 .main { grid-area: main;
     margin: 10px;
     padding: 10px;
@@ -59,4 +50,24 @@ body {
         padding: 2px;
         margin: 10px;
     }
+}
+.hr2 { grid-area: hr2;}
+.mainPhoto { grid-area: mainPhoto;
+    height: auto;
+    max-width: 60vw;
+    padding: 5px;
+    margin: auto;
+    img {
+        height: 100%;
+        max-width: 100%;
+        transition: 2s linear;
+        &:hover {
+            transform: scale(1.15);
+        }
+    }
+}
+.hr3 { grid-area: hr3;}
+.footer { grid-area: footer;
+    font-size: 1.5rem;
+    margin: 20px auto;
 }

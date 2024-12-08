@@ -1,0 +1,26 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+$blue: #2f2234;
+$violet: #1a2738;
+
+body {
+    background-color: black;
+    font-family: "Verdana", "Geneva", sans-serif;
+    color: white;
+    height: 100vh;
+    margin: 1vh 1vw;
+    padding: 1vh 1vw;
+}
+
+hr {
+    width: 80%;
+    height: 2px;
+    background: linear-gradient(to left, $blue, $violet);
+    margin: 40px auto;
+    border: none;
+    opacity: 0.8;
+}
