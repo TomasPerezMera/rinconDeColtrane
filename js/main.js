@@ -21,6 +21,31 @@ const nueve = new Album(9, "Ascension", 1966, 27);
 
 const catalogo = [cero, uno, dos, tres, cuatro, cinco, seis, siete, ocho, nueve];
 
+const itemCounts = {};
+
+catalogo.forEach(album => {
+    itemCounts[album.id] = 0;
+});
+
+function updateCounterDisplay(albumId) {
+    const counter = document.querySelector(`.item-counter[data-id="${albumId}"]`);
+    counter.textContent = itemCounts[albumId];
+}
+
+document.addEventListener("click", (event) => {
+    if (event.target.classList.contains("increase-btn")) {
+        const albumId = event.target.getAttribute("data-id");
+        itemCounts[albumId]++;
+        updateCounterDisplay(albumId);
+    }
+
+    if (event.target.classList.contains("decrease-btn")) {
+        const albumId = event.target.getAttribute("data-id");
+        if (itemCounts[albumId] > 0) itemCounts[albumId]--;
+        updateCounterDisplay(albumId);
+    }
+});
+
 
 /*Lógica del E-Commerce*/
 

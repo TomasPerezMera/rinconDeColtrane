@@ -4,16 +4,24 @@
     box-sizing: border-box;
 }
 
-$blue: #2f2234;
-$violet: #1a2738;
+$blue: #4b6cad;
+$violet: #72419d;
+
+@font-face {
+    font-family: 'Clarendon Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Clarendon Regular'), url('/style/ClarendonRegular.woff') format('woff');
+}
 
 body {
     background-color: black;
-    font-family: "Verdana", "Geneva", sans-serif;
+    font-family: "Clarendon Regular";
     color: white;
-    height: 100vh;
+    min-height: 100vh;
     margin: 1vh 1vw;
     padding: 1vh 1vw;
+    align-items: center;
 }
 
 hr {
