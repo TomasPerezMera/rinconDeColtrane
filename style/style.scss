@@ -19,8 +19,6 @@ $violet: #72419d;
         "hr1"
         "main"
         "hr2"
-        "mainPhoto"
-        "hr3"
         "footer";
 }
 .header { grid-area: header;
@@ -90,7 +88,7 @@ $violet: #72419d;
     }
 }
 .hr2 { grid-area: hr2;}
-.mainPhoto { grid-area: mainPhoto;
+.footer { grid-area: footer;
     height: auto;
     max-width: 60vw;
     padding: 40px 10px;
@@ -103,17 +101,5 @@ $violet: #72419d;
         &:hover {
             transform: scale(1.15);
         }
-    }
-}
-.hr3 { grid-area: hr3;}
-.footer { grid-area: footer;
-    font-size: 1.5rem;
-    margin: 30px auto 50px;
-    a {
-        color: white;
-        font-size: clamp(1.5rem, 2vw, 3rem);
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
     }
 }

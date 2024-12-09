@@ -38,7 +38,7 @@ hr {
   text-align: center;
   min-height: 90%;
   min-width: 90%;
-  grid-template-areas: "header" "hr1" "main" "hr2" "mainPhoto" "hr3" "footer";
+  grid-template-areas: "header" "hr1" "main" "hr2" "footer";
 }
 
 .header {
@@ -132,38 +132,21 @@ hr {
   grid-area: hr2;
 }
 
-.mainPhoto {
-  grid-area: mainPhoto;
+.footer {
+  grid-area: footer;
   height: auto;
   max-width: 60vw;
   padding: 40px 10px;
   margin: 5px auto;
 }
-.mainPhoto img {
+.footer img {
   height: 750px;
   width: 750px;
   max-width: 100%;
   transition: 2s linear;
 }
-.mainPhoto img:hover {
+.footer img:hover {
   transform: scale(1.15);
-}
-
-.hr3 {
-  grid-area: hr3;
-}
-
-.footer {
-  grid-area: footer;
-  font-size: 1.5rem;
-  margin: 30px auto 50px;
-}
-.footer a {
-  color: white;
-  font-size: clamp(1.5rem, 2vw, 3rem);
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
 }
 
 /*# sourceMappingURL=style.css.map */
