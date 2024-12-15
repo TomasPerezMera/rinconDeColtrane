@@ -22,6 +22,10 @@ const nueve = new Album(9, "Ascension", 1966, 27);
 
 const catalogo = [uno, dos, tres, cuatro, cinco, seis, siete, ocho, nueve];
 
+/*Acá mandale una función Push como para añadir cada new object al array catálogo!! En vez de escribirlo manualmente!
+PD añadí un atributo Cantidad a cada objeto, para sumarlos fácil si el usuario pincha más de una vez!!*/
+
+
 const itemCounts = {};
 
 catalogo.forEach(album => {

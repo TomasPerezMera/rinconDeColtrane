@@ -34,8 +34,6 @@ $violet: #72419d;
 .main { grid-area: main;
     margin: 20px auto;
     padding: 10px;
-    min-width: 0;
-    min-height: 0;
     .subGrid {  display: grid;
         grid-template-columns: repeat(3, auto);
         grid-template-rows: repeat(3, auto);
@@ -56,11 +54,15 @@ $violet: #72419d;
             margin: 10px auto;
         }
         div {
-            button {
-                height: 25px;
-                min-width: 25px;
-                margin: 2px auto;
+            .botones {
+                margin: 10px auto;
+                button {
+                    height: 25px;
+                    min-width: 25px;
+                    margin: 2px auto;
+                }
             }
+
         }
     }
         .uno { grid-area: uno; }
