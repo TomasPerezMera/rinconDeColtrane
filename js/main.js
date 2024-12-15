@@ -1,29 +1,30 @@
 /*Inventario del Catálogo*/
 
+const catalogo = [];
+
 class Album {
-    constructor(id, name, year, price) {
+    constructor(id, name, year, price, amount) {
         this.id = id;
         this.name = name;
         this.year = year;
         this.price = price;
+        this.amount = amount;
+        catalogo.push(this);
     }
 }
 
-const uno = new Album(1, "Blue Train", 1957, 30);
-const dos = new Album(2, "Soultrane", 1958, 27);
-const tres = new Album(3, "Giant Steps", 1959, 48);
-const cuatro = new Album(4, "Thelonious Monk with John Coltrane", 1961, 24);
-const cinco = new Album(5, "My Favorite Things", 1961, 40);
-const seis = new Album(6, "John Coltrane and Johnny Hartman", 1963, 45);
-const siete = new Album(7, "A Love Supreme", 1964, 50);
-const ocho = new Album(8, "Meditations", 1965, 38);
-const nueve = new Album(9, "Ascension", 1966, 27);
+const uno = new Album(1, "Blue Train", 1957, 30, 1);
+const dos = new Album(2, "Soultrane", 1958, 27, 1);
+const tres = new Album(3, "Giant Steps", 1959, 48, 1);
+const cuatro = new Album(4, "Thelonious Monk with John Coltrane", 1961, 24, 1);
+const cinco = new Album(5, "My Favorite Things", 1961, 40, 1);
+const seis = new Album(6, "John Coltrane and Johnny Hartman", 1963, 45, 1);
+const siete = new Album(7, "A Love Supreme", 1964, 50, 1);
+const ocho = new Album(8, "Meditations", 1965, 38, 1);
+const nueve = new Album(9, "Ascension", 1966, 27, 1);
 
+console.log(catalogo);
 
-const catalogo = [uno, dos, tres, cuatro, cinco, seis, siete, ocho, nueve];
-
-/*Acá mandale una función Push como para añadir cada new object al array catálogo!! En vez de escribirlo manualmente!
-PD añadí un atributo Cantidad a cada objeto, para sumarlos fácil si el usuario pincha más de una vez!!*/
 
 
 const itemCounts = {};
@@ -150,26 +151,22 @@ function procesoCompra() {
 }
 
 
-
 alert("Bienvenido al rincón de Coltrane! Un pequeño, pero importante rincón de Internet, donde podrás adquirir algunos de los álbumes más célebres del legendario saxofonista.")
 
-alert("A continuación, procederemos a listar los ítems disponibles. Se permite un máximo de 3 unidades por cada compra - elije con cuidado!")
-
+alert("A continuación, procederemos a listar los ítems disponibles. Debido al stock limitado, se permite un máximo de 3 unidades por cada compra - elije con cuidado!")
 
 
 function mostrarCatalogo() {
-    const catalogoContent = "";
+    let catalogoContent = "";
     for (const item of catalogo) {
-        catalogoContent += "Nombre: ${item.name}, Precio: $${item.price*1100}\n";
+        catalogoContent += `${item.name}, Año: ${item.year} - Precio: $${item.price*1100}\n`;
     }
-    console.log(catalogoContent);
+    return catalogoContent;
 }
 
-mostrarCatalogo(catalogo);
+alert(`El inventario disponible es: \n` + mostrarCatalogo())
 
-/*
-alert("1 - WIP - $100\n2 - WIP - $200\n3 - WIP - $300\n4 - WIP - $400\n5 - WIP - $500\n6 - WIP - $600\n7 - WIP - $700\n8 - WIP - $800\n9 - WIP - $900\n")
-*/
+
 
 procesoCompra();
 
