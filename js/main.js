@@ -13,20 +13,20 @@ class Album {
     }
 }
 
-const uno = new Album(1, "Blue Train", 1957, 30, 1);
-const dos = new Album(2, "Soultrane", 1958, 27, 1);
-const tres = new Album(3, "Giant Steps", 1959, 48, 1);
-const cuatro = new Album(4, "Thelonious Monk with John Coltrane", 1961, 24, 1);
-const cinco = new Album(5, "My Favorite Things", 1961, 40, 1);
-const seis = new Album(6, "John Coltrane and Johnny Hartman", 1963, 45, 1);
-const siete = new Album(7, "A Love Supreme", 1964, 50, 1);
-const ocho = new Album(8, "Meditations", 1965, 38, 1);
-const nueve = new Album(9, "Ascension", 1966, 27, 1);
+const uno = new Album(1, "Blue Train", 1957, 30400, 0);
+const dos = new Album(2, "Soultrane", 1958, 27600, 0);
+const tres = new Album(3, "Giant Steps", 1959, 48, 0);
+const cuatro = new Album(4, "Thelonious Monk with John Coltrane", 1961, 24840, 0);
+const cinco = new Album(5, "My Favorite Things", 1961, 40570, 0);
+const seis = new Album(6, "John Coltrane and Johnny Hartman", 1963, 45600, 0);
+const siete = new Album(7, "A Love Supreme", 1964, 50300, 0);
+const ocho = new Album(8, "Meditations", 1965, 38880, 0);
+const nueve = new Album(9, "Ascension", 1966, 27180, 0);
 
 console.log(catalogo);
 
 
-
+/*Asignación de Botones*/
 const itemCounts = {};
 
 catalogo.forEach(album => {
@@ -58,12 +58,16 @@ document.addEventListener("click", (event) => {
 let precioCarrito = 0;
 let seguirComprando = true;
 
+function totalCarrito() {
+    return(`El precio total de tu carrito es: $` + (precioCarrito) + `.`)
+}
+
 function compraLoop() {
     const seguirComprando = confirm("¿Deseas seguir comprando?");
     if(seguirComprando) {
         procesoCompra();
     } else {
-        alert("Muchas gracias por tu compra! El precio total de tu carrito es: $" + (precioCarrito*1100))
+        alert(`Muchas gracias por tu compra! ` + totalCarrito())
         finalizarCompra();
     }
 }
@@ -71,7 +75,9 @@ function compraLoop() {
 function exitLoop() {
     const repetir = confirm("¿Deseas repetir el proceso de compra?");
     if(repetir) {
-        alert("Oído cocina! Un dulce saxofón nos transporta al principio del proceso de compras...")
+        alert("Oído cocina! Un dulce saxofón nos transporta al principio del proceso de compras...");
+        catalogo.forEach(catalogo => catalogo.amount = 0);
+        precioCarrito = 0;
         procesoCompra();
     } else {
         alert("Esperamos que estés satisfecho con la compra!\nRecuerda que puedes continuar explorando nuestro sitio, para llevarte los mejores álbumes que el jazz tiene para ofrecer.")
@@ -83,8 +89,13 @@ function finalizarCompra() {
     exitLoop();
 }
 
+function excesoCantidad() {
+    alert("Lo sentimos, has seleccionado demasiadas veces este ítem! Por favor, elige otro disco para comprar, o finaliza tu compra.");
+    procesoCompra();
+}
+
 function procesoCompra() {
-    let primerSeleccion = prompt("Selecciona el artículo deseado. Puedes cancelar la compra marcando 0.");
+    let primerSeleccion = prompt("Selecciona el artículo deseado. Puedes cancelar la compra marcando 0. También puedes consultar el estado de tu carrito ingresando 10.");
     if (primerSeleccion === null) {
         alert("Has cancelado la compra. ¡Te esperamos la próxima vez!");
         return;
@@ -92,48 +103,106 @@ function procesoCompra() {
     primerSeleccion = parseInt(primerSeleccion);
     switch(primerSeleccion) {
         case 1:
-            precioCarrito += uno.price;
-            alert("Has añadido el ítem: "+ uno.name +" a tu carrito!")
-            compraLoop();
-            break;
+            if(uno.amount == 3) {
+                excesoCantidad();
+            } else {
+                precioCarrito += uno.price;
+                uno.amount++;
+                alert("Has añadido el ítem: "+ uno.name +" a tu carrito! Unidades: " + uno.amount)
+                compraLoop();
+                break;
+            }
         case 2:
-            precioCarrito += dos.price;
-            alert("Has añadido el ítem: "+ dos.name +" a tu carrito!")
-            compraLoop();
-            break;
+            if(dos.amount == 3) {
+                excesoCantidad();
+            } else {
+                precioCarrito += dos.price;
+                dos.amount++;
+                alert("Has añadido el ítem: "+ dos.name +" a tu carrito! Unidades: " + dos.amount)
+                compraLoop();
+                break;
+            }
         case 3:
-            precioCarrito += tres.price;
-            alert("Has añadido el ítem: "+ tres.name +" a tu carrito!")
-            compraLoop();
-            break;
+            if(tres.amount == 3) {
+                excesoCantidad();
+            } else {
+                precioCarrito += tres.price;
+                tres.amount++;
+                alert(`Has añadido el ítem: `+ tres.name +` a tu carrito! Unidades: ` + tres.amount)
+                compraLoop();
+                break;
+            }
         case 4:
-            precioCarrito += cuatro.price;
-            alert("Has añadido el ítem: "+ cuatro.name +" a tu carrito!")
-            compraLoop();
-            break;
+            if(cuatro.amount == 3) {
+                excesoCantidad();
+            } else {
+                precioCarrito += cuatro.price;
+                cuatro.amount++;
+                alert(`Has añadido el ítem: `+ cuatro.name +` a tu carrito! Unidades: ` + cuatro.amount)
+                compraLoop();
+                break;
+            }
         case 5:
-            precioCarrito += cinco.price;
-            alert("Has añadido el ítem: "+ cinco.name +" a tu carrito!")
-            compraLoop();
-            break;
+            if(cinco.amount == 3) {
+                excesoCantidad();
+            } else {
+                precioCarrito += cinco.price;
+                cinco.amount++;
+                alert("Has añadido el ítem: "+ cinco.name +" a tu carrito! Unidades: " + cinco.amount)
+                compraLoop();
+                break;
+            }
         case 6:
-            precioCarrito += seis.price;
-            alert("Has añadido el ítem: "+ seis.name +" a tu carrito!")
-            compraLoop();
-            break;
+            if(seis.amount == 3) {
+                excesoCantidad();
+            } else {
+                precioCarrito += seis.price;
+                seis.amount++;
+                alert("Has añadido el ítem: "+ seis.name +" a tu carrito! Unidades: " + seis.amount)
+                compraLoop();
+                break;
+            }
         case 7:
-            precioCarrito += siete.price;
-            alert("Has añadido el ítem: "+ siete.name +" a tu carrito!")
-            compraLoop();
-            break;
+            if(siete.amount == 3) {
+                excesoCantidad();
+            } else {
+                precioCarrito += siete.price;
+                siete.amount++;
+                alert("Has añadido el ítem: "+ siete.name +" a tu carrito! Unidades: " + siete.amount)
+                compraLoop();
+                break;
+            }
         case 8:
-            precioCarrito += ocho.price;
-            alert("Has añadido el ítem: "+ ocho.name +" a tu carrito!")
-            compraLoop();
-            break;
+            if(ocho.amount == 3) {
+                excesoCantidad();
+            } else {
+                precioCarrito += ocho.price;
+                ocho.amount++;
+                alert("Has añadido el ítem: "+ ocho.name +" a tu carrito! Unidades: " + ocho.amount)
+                compraLoop();
+                break;
+            }
         case 9:
-            precioCarrito += nueve.price;
-            alert("Has añadido el ítem: "+ nueve.name +" a tu carrito!")
+            if(nueve.amount == 3) {
+                excesoCantidad();
+            } else {
+                precioCarrito += nueve.price;
+                nueve.amount++;
+                alert("Has añadido el ítem: "+ nueve.name +" a tu carrito! Unidades: " + nueve.amount)
+                compraLoop();
+                break;
+            }
+        case 10:
+            const carritoActual = catalogo.filter(catalogo => catalogo.amount > 0);
+            console.log(carritoActual);
+            if (carritoActual.length === 0) {
+                alert("Tu carrito está vacío.");
+            } else {
+                const CarritoLleno = carritoActual.map(album =>
+                    `Nombre: ${album.name}, Precio: $${precioCarrito}, Cantidad: ${album.amount}`
+                ).join("\n");
+                alert(`Tu carrito actual:\n${CarritoLleno}`);
+            }
             compraLoop();
             break;
         case 0:
@@ -165,7 +234,6 @@ function mostrarCatalogo() {
 }
 
 alert(`El inventario disponible es: \n` + mostrarCatalogo())
-
 
 
 procesoCompra();
