@@ -26,33 +26,6 @@ const nueve = new Album(9, "Ascension", 1966, 27180, 0);
 console.log(catalogo);
 
 
-/*Asignación de Botones*/
-const itemCounts = {};
-
-catalogo.forEach(album => {
-    itemCounts[album.id] = 0;
-});
-
-function updateCounterDisplay(albumId) {
-    const counter = document.querySelector(`.item-counter[data-id="${albumId}"]`);
-    counter.textContent = itemCounts[albumId];
-}
-
-document.addEventListener("click", (event) => {
-    if (event.target.classList.contains("increase-btn")) {
-        const albumId = event.target.getAttribute("data-id");
-        itemCounts[albumId]++;
-        updateCounterDisplay(albumId);
-    }
-
-    if (event.target.classList.contains("decrease-btn")) {
-        const albumId = event.target.getAttribute("data-id");
-        if (itemCounts[albumId] > 0) itemCounts[albumId]--;
-        updateCounterDisplay(albumId);
-    }
-});
-
-
 /*Lógica del E-Commerce*/
 
 let precioCarrito = 0;
@@ -60,6 +33,10 @@ let seguirComprando = true;
 
 function totalCarrito() {
     return(`El precio total de tu carrito es: $` + (precioCarrito) + `.`)
+}
+
+function exitMessage() {
+    return("Esperamos que estés satisfecho con la compra!\nRecuerda que puedes continuar explorando nuestro sitio, para llevarte los mejores álbumes que el jazz tiene para ofrecer.")
 }
 
 function compraLoop() {
@@ -80,7 +57,7 @@ function exitLoop() {
         precioCarrito = 0;
         procesoCompra();
     } else {
-        alert("Esperamos que estés satisfecho con la compra!\nRecuerda que puedes continuar explorando nuestro sitio, para llevarte los mejores álbumes que el jazz tiene para ofrecer.")
+        alert(exitMessage());
     }
 }
 
@@ -199,8 +176,8 @@ function procesoCompra() {
                 alert("Tu carrito está vacío.");
             } else {
                 const CarritoLleno = carritoActual.map(album =>
-                    `Nombre: ${album.name}, Precio: $${precioCarrito}, Cantidad: ${album.amount}`
-                ).join("\n");
+                    `Nombre: ${album.name}, Precio: $${album.price}, Cantidad: ${album.amount}`
+                ).join("\n") + `\nEl precio total de tu carrito es: $${precioCarrito}`;
                 alert(`Tu carrito actual:\n${CarritoLleno}`);
             }
             compraLoop();
@@ -220,6 +197,38 @@ function procesoCompra() {
 }
 
 
+/*Asignación de Botones*/
+const itemCounts = {};
+
+catalogo.forEach(album => {
+    itemCounts[album.id] = 0;
+});
+
+function updateCounterDisplay(albumId) {
+    const counter = document.querySelector(`.item-counter[data-id="${albumId}"]`);
+    if (counter) {
+        counter.textContent = itemCounts[albumId];
+    }
+}
+
+document.addEventListener("click", (event) => {
+    const albumId = event.target.getAttribute("data-id");
+    if (!albumId) return;
+    if (event.target.classList.contains("increase-btn")) {
+        if (itemCounts[albumId] < 3) {
+            itemCounts[albumId]++;
+            updateCounterDisplay(albumId);
+        }
+    }
+    if (event.target.classList.contains("decrease-btn")) {
+        if (itemCounts[albumId] > 0) {
+            itemCounts[albumId]--;
+            updateCounterDisplay(albumId);
+        }
+    }
+});
+
+
 alert("Bienvenido al rincón de Coltrane! Un pequeño, pero importante rincón de Internet, donde podrás adquirir algunos de los álbumes más célebres del legendario saxofonista.")
 
 alert("A continuación, procederemos a listar los ítems disponibles. Debido al stock limitado, se permite un máximo de 3 unidades por cada compra - elije con cuidado!")
@@ -228,7 +237,7 @@ alert("A continuación, procederemos a listar los ítems disponibles. Debido al 
 function mostrarCatalogo() {
     let catalogoContent = "";
     for (const item of catalogo) {
-        catalogoContent += `${item.name}, Año: ${item.year} - Precio: $${item.price*1100}\n`;
+        catalogoContent += `${item.name}, Año: ${item.year} - Precio: $${item.price}\n`;
     }
     return catalogoContent;
 }
