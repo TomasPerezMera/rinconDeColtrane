@@ -177,7 +177,7 @@ function procesoCompra() {
             } else {
                 const CarritoLleno = carritoActual.map(album =>
                     `Nombre: ${album.name}, Precio: $${album.price}, Cantidad: ${album.amount}`
-                ).join("\n") + `\nEl precio total de tu carrito es: $${precioCarrito}`;
+                ).join("\n") + `\nEl precio total de tu carrito es: $${precioCarrito}.`;
                 alert(`Tu carrito actual:\n${CarritoLleno}`);
             }
             compraLoop();
@@ -247,3 +247,12 @@ alert(`El inventario disponible es: \n` + mostrarCatalogo())
 
 procesoCompra();
 
+/*A desarrollar aún:
+
+- Music Player stuff (botón minimalista at the top?) - see GPT thread
+- junto al music button - Currency Changer? Sólo si pinta que el proyecto pide complejidad....
+- Falta el precio de cada álbum en el display de la web, bolas!!!
+- botón para carrito y toda esa wea del sale process
+- MOBILE VIEWING!!!!!
+    -At LEAST a media query que convierta a una columna los álbumes, como pa poder mostrarle a la gente tu página sin tener que aclarar "bueno es que se ve bien sólo en un ordenadó'....."
+*/

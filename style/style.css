@@ -29,13 +29,14 @@ hr {
   opacity: 0.8;
 }
 
-.mainGrid {
+body {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto;
   grid-auto-flow: column;
   gap: 5px;
   text-align: center;
+  place-items: center;
   min-height: 90%;
   min-width: 90%;
   grid-template-areas: "header" "hr1" "main" "hr2" "footer";
@@ -49,6 +50,7 @@ hr {
   font-size: clamp(4rem, 2vw, 6rem);
   background: linear-gradient(to left, #2551a8, #72419d);
   -webkit-background-clip: text;
+  background-clip: text; /*remove if trouble*/
   -webkit-text-fill-color: transparent;
 }
 
@@ -60,17 +62,19 @@ hr {
   grid-area: main;
   margin: 20px auto;
   padding: 10px;
+  width: 100%;
+  height: auto;
 }
 .main .subGrid {
   display: grid;
-  grid-template-columns: repeat(3, auto);
-  grid-template-rows: repeat(3, auto);
-  gap: 5px 2px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: auto;
   grid-auto-flow: row;
+  place-items: center;
+  gap: 5px 2px;
   font-size: 2rem;
-  min-width: 100%;
-  min-height: 100%;
-  grid-template-areas: "uno dos tres" "cuatro cinco seis" "siete ocho nueve";
+  width: 100%;
+  height: auto;
 }
 .main .subGrid h2 {
   font-size: clamp(1.5rem, 2vw, 3rem);
@@ -79,6 +83,9 @@ hr {
   word-break: break-word;
   margin: 10px auto;
 }
+.main .subGrid div {
+  place-items: center;
+}
 .main .subGrid div .botones {
   margin: 10px auto;
 }
@@ -86,33 +93,6 @@ hr {
   height: 25px;
   min-width: 25px;
   margin: 2px auto;
-}
-.main .uno {
-  grid-area: uno;
-}
-.main .dos {
-  grid-area: dos;
-}
-.main .tres {
-  grid-area: tres;
-}
-.main .cuatro {
-  grid-area: cuatro;
-}
-.main .cinco {
-  grid-area: cinco;
-}
-.main .seis {
-  grid-area: seis;
-}
-.main .siete {
-  grid-area: siete;
-}
-.main .ocho {
-  grid-area: ocho;
-}
-.main .nueve {
-  grid-area: nueve;
 }
 .main div {
   width: 90%;
@@ -136,18 +116,87 @@ hr {
 .footer {
   grid-area: footer;
   height: auto;
+  width: auto;
   max-width: 60vw;
   padding: 40px 10px;
   margin: 5px auto;
 }
 .footer img {
-  height: 750px;
+  height: auto;
   width: 750px;
   max-width: 100%;
   transition: 2s linear;
 }
 .footer img:hover {
   transform: scale(1.15);
+}
+
+/*Media Queries*/
+@media (max-width: 1024px) {
+  body {
+    max-width: 1024px;
+    width: 100%;
+  }
+  body .header {
+    width: 80%;
+  }
+  body .main .subGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: auto;
+    place-items: center;
+    gap: 10px 5px;
+    margin: 5px auto;
+  }
+  body .main .subGrid h2 {
+    font-size: clamp(1.8rem, 2vw, 3rem);
+  }
+  body .main .subGrid div img {
+    max-width: 80%;
+    height: auto;
+  }
+  body .footer {
+    height: auto;
+    min-width: 80%;
+    width: 100%;
+    padding: 20px 10px;
+    margin: 5px auto;
+  }
+  body .footer img {
+    height: auto;
+    width: 100%;
+    transition: 2s linear;
+  }
+  body .footer img:hover {
+    transform: scale(1.15);
+  }
+}
+@media (max-width: 768px) {
+  body {
+    max-width: 768px;
+    min-width: 480px;
+    width: 100%;
+  }
+  body .main .subGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+    place-items: center;
+    gap: 8px 2px;
+  }
+  body .main .subGrid h2 {
+    font-size: clamp(1.8rem, 2vw, 3rem);
+  }
+  body .main .subGrid div img {
+    max-width: 80%;
+    height: auto;
+  }
+}
+@media (max-width: 480px) {
+  body {
+    max-width: 480px;
+    min-width: 300px;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

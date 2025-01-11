@@ -5,13 +5,14 @@ $blue: #4b6cad;
 $blue2: #2551a8;
 $violet: #72419d;
 
-.mainGrid {
+body {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: auto;
     grid-auto-flow: column;
     gap: 5px;
     text-align: center;
+    place-items: center;
     min-height: 90%;
     min-width: 90%;
     grid-template-areas:
@@ -27,6 +28,7 @@ $violet: #72419d;
         font-size: clamp(4rem, 2vw, 6rem);
         background: linear-gradient(to left, $blue2, $violet);
         -webkit-background-clip: text;
+        background-clip: text; /*remove if trouble*/
         -webkit-text-fill-color: transparent;
     }
 }
@@ -34,18 +36,17 @@ $violet: #72419d;
 .main { grid-area: main;
     margin: 20px auto;
     padding: 10px;
-    .subGrid {  display: grid;
-        grid-template-columns: repeat(3, auto);
-        grid-template-rows: repeat(3, auto);
-        gap: 5px 2px;
+    width: 100%;
+    height: auto;
+    .subGrid { display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-auto-rows: auto;
         grid-auto-flow: row;
+        place-items: center;
+        gap: 5px 2px;
         font-size: 2rem;
-        min-width: 100%;
-        min-height: 100%;
-        grid-template-areas:
-            "uno dos tres"
-            "cuatro cinco seis"
-            "siete ocho nueve";
+        width: 100%;
+        height: auto;
         h2 {
             font-size: clamp(1.5rem, 2vw, 3rem);
             text-align: center;
@@ -54,6 +55,7 @@ $violet: #72419d;
             margin: 10px auto;
         }
         div {
+            place-items: center;
             .botones {
                 margin: 10px auto;
                 button {
@@ -65,15 +67,6 @@ $violet: #72419d;
 
         }
     }
-        .uno { grid-area: uno; }
-        .dos { grid-area: dos; }
-        .tres { grid-area: tres; }
-        .cuatro { grid-area: cuatro; }
-        .cinco { grid-area: cinco; }
-        .seis { grid-area: seis; }
-        .siete { grid-area: siete; }
-        .ocho { grid-area: ocho; }
-        .nueve { grid-area: nueve; }
     div {
         width: 90%;
         height: auto;
@@ -92,17 +85,97 @@ $violet: #72419d;
 .hr2 { grid-area: hr2;}
 .footer { grid-area: footer;
     height: auto;
+    width: auto;
     max-width: 60vw;
     padding: 40px 10px;
     margin: 5px auto;
     img {
-        height: 750px;
+        height: auto;
         width: 750px;
         max-width: 100%;
         transition: 2s linear;
         &:hover {
             transform: scale(1.15);
         }
+    }
+}
+
+/*Media Queries*/
+
+@media (max-width: 1024px) {
+    body {
+        max-width: 1024px;
+        width: 100%;
+        .header {
+            width: 80%;
+        }
+        .main {
+            .subGrid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                grid-auto-rows: auto;
+                place-items: center;
+                gap: 10px 5px;
+                margin: 5px auto;
+                h2 {
+                    font-size: clamp(1.8rem, 2vw, 3rem);
+                }
+                div {
+                    img {
+                        max-width: 80%;
+                        height: auto;
+                    }
+                }
+            }
+        }
+        .footer {
+            height: auto;
+            min-width: 80%;
+            width: 100%;
+            padding: 20px 10px;
+            margin: 5px auto;
+            img {
+                height: auto;
+                width: 100%;
+                transition: 2s linear;
+                &:hover {
+                    transform: scale(1.15);
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        max-width: 768px;
+        min-width: 480px;
+        width: 100%;
+        .main {
+            .subGrid {
+                display: grid;
+                grid-template-columns: 1fr;
+                grid-auto-rows: auto;
+                place-items: center;
+                gap: 8px 2px;
+                h2 {
+                    font-size: clamp(1.8rem, 2vw, 3rem);
+                }
+                div {
+                    img {
+                        max-width: 80%;
+                        height: auto;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        max-width: 480px;
+        min-width: 300px;
     }
 }
 
