@@ -1,3 +1,37 @@
+/*Import Product Catalog*/
+let catalogo = [];
+const itemCounts = {};
+
+fetch('./js/catalog.json')
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        catalogo = data;
+        const subGrid = document.querySelector('.subGrid');
+        catalogo.forEach(album => {
+            itemCounts[album.id] = 0;
+        });
+        for (const album of data) {
+            let albumItem = document.createElement("div");
+
+            albumItem.innerHTML = `
+            <div class="d-flex flex-column" id="album-${album.id}">
+                <img src="${album.source}" alt="${album.id}º Album Cover" height="400" width="400">
+                <h2>
+                    ${album.name}
+                </h2>
+                <div class="botones d-flex align-items-center justify-content-center">
+                    <button type="button" class="btn btn-outline-light btn-sm fw-bold d-flex justify-content-center align-items-center decrease-btn" data-id="${album.id}">-</button>
+                    <button type="button" class="btn btn-light btn-sm fw-bold mx-2 d-flex justify-content-center align-items-center item-counter" data-id="${album.id}" disabled>${album.amount}</button>
+                    <button type="button" class="btn btn-outline-light btn-sm fw-bold d-flex justify-content-center align-items-center increase-btn" data-id="${album.id}">+</button>
+                </div>
+            </div>`
+            subGrid.appendChild(albumItem);
+        }
+})
+.catch(error => console.error('Error loading JSON:', error));
+
+
 /*Media Player*/
 
 const musicToggle = document.getElementById("musicToggle");
@@ -13,37 +47,6 @@ musicToggle.addEventListener('click', () => {
         musicImg.src = "./assets/playButton.png";
     }
 })
-
-
-
-
-/*Inventario del Catálogo*/
-
-const catalogo = [];
-
-class Album {
-    constructor(id, name, year, price, amount) {
-        this.id = id;
-        this.name = name;
-        this.year = year;
-        this.price = price;
-        this.amount = amount;
-        catalogo.push(this);
-    }
-}
-
-const uno = new Album(1, "Blue Train", 1957, 30400, 0);
-const dos = new Album(2, "Soultrane", 1958, 27600, 0);
-const tres = new Album(3, "Giant Steps", 1959, 48, 0);
-const cuatro = new Album(4, "Thelonious Monk with John Coltrane", 1961, 24840, 0);
-const cinco = new Album(5, "My Favorite Things", 1961, 40570, 0);
-const seis = new Album(6, "John Coltrane and Johnny Hartman", 1963, 45600, 0);
-const siete = new Album(7, "A Love Supreme", 1964, 50300, 0);
-const ocho = new Album(8, "Meditations", 1965, 38880, 0);
-const nueve = new Album(9, "Ascension", 1966, 27180, 0);
-
-console.log(catalogo);
-
 
 /*Lógica del E-Commerce*/
 
@@ -217,11 +220,9 @@ function procesoCompra() {
 
 
 /*Asignación de Botones*/
-const itemCounts = {};
 
-catalogo.forEach(album => {
-    itemCounts[album.id] = 0;
-});
+
+
 
 function updateCounterDisplay(albumId) {
     const counter = document.querySelector(`.item-counter[data-id="${albumId}"]`);
@@ -248,7 +249,7 @@ document.addEventListener("click", (event) => {
 });
 
 
-
+/*Catalog Display (obsolote)*/
 
 function mostrarCatalogo() {
     let catalogoContent = "";
@@ -258,7 +259,7 @@ function mostrarCatalogo() {
     return catalogoContent;
 }
 
-alert(`El inventario disponible es: \n` + mostrarCatalogo())
+/*alert(`El inventario disponible es: \n` + mostrarCatalogo())
+procesoCompra();*/
 
-
-/*procesoCompra();*/
+console.log(catalogo);

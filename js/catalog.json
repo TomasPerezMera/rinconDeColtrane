@@ -1,0 +1,74 @@
+[
+    {
+        "id": 1,
+        "name": "Blue Train",
+        "year": 1957,
+        "price": 30400,
+        "amount": 0,
+        "source": "./images/covers/blueTrain.jpg"
+    },
+    {
+        "id": 2,
+        "name": "Soultrane",
+        "year": 1958,
+        "price": 27600,
+        "amount": 0,
+        "source": "./images/covers/soulTrane.jpg"
+    },
+    {
+        "id": 3,
+        "name": "Giant Steps",
+        "year": 1959,
+        "price": 48,
+        "amount": 0,
+        "source": "./images/covers/giantSteps.jpg"
+    },
+    {
+        "id": 4,
+        "name": "Ballads",
+        "year": 1961,
+        "price": 24840,
+        "amount": 0,
+        "source": "./images/covers/ballads.jpg"
+    },
+    {
+        "id": 5,
+        "name": "My Favorite Things",
+        "year": 1961,
+        "price": 40570,
+        "amount": 0,
+        "source": "./images/covers/myFavoriteThings.jpg"
+    },
+    {
+        "id": 6,
+        "name": "John Coltrane and Johnny Hartman",
+        "year": 1963,
+        "price": 45600,
+        "amount": 0,
+        "source": "./images/covers/johnnyHartman.jpg"
+    },
+    {
+        "id": 7,
+        "name": "A Love Supreme",
+        "year": 1964,
+        "price": 50300,
+        "amount": 0,
+        "source": "./images/covers/aLoveSupreme.jpg"
+    },
+    {
+        "id": 8,
+        "name": "Meditations",
+        "year": 1965,
+        "price": 38880,
+        "amount": 0,
+        "source": "./images/covers/meditations.jpg"
+    },
+    {
+        "id": 9,
+        "name": "Ascension",
+        "year": 1966,
+        "price": 27180,
+        "amount": 0,
+        "source": "./images/covers/ascension.jpg"
+    }
+]
