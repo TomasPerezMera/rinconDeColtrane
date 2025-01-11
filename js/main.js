@@ -1,3 +1,22 @@
+/*Media Player*/
+
+const musicToggle = document.getElementById("musicToggle");
+const coltraneProject = document.getElementById("coltraneProject");
+const musicImg = document.getElementById("musicImg");
+
+musicToggle.addEventListener('click', () => {
+    if (coltraneProject.paused) {
+        coltraneProject.play();
+        musicImg.src = "./assets/pauseButton.png";
+    } else {
+        coltraneProject.pause();
+        musicImg.src = "./assets/playButton.png";
+    }
+})
+
+
+
+
 /*Inventario del Catálogo*/
 
 const catalogo = [];
@@ -229,9 +248,6 @@ document.addEventListener("click", (event) => {
 });
 
 
-alert("Bienvenido al rincón de Coltrane! Un pequeño, pero importante rincón de Internet, donde podrás adquirir algunos de los álbumes más célebres del legendario saxofonista.")
-
-alert("A continuación, procederemos a listar los ítems disponibles. Debido al stock limitado, se permite un máximo de 3 unidades por cada compra - elije con cuidado!")
 
 
 function mostrarCatalogo() {
@@ -245,14 +261,4 @@ function mostrarCatalogo() {
 alert(`El inventario disponible es: \n` + mostrarCatalogo())
 
 
-procesoCompra();
-
-/*A desarrollar aún:
-
-- Music Player stuff (botón minimalista at the top?) - see GPT thread
-- junto al music button - Currency Changer? Sólo si pinta que el proyecto pide complejidad....
-- Falta el precio de cada álbum en el display de la web, bolas!!!
-- botón para carrito y toda esa wea del sale process
-- MOBILE VIEWING!!!!!
-    -At LEAST a media query que convierta a una columna los álbumes, como pa poder mostrarle a la gente tu página sin tener que aclarar "bueno es que se ve bien sólo en un ordenadó'....."
-*/
+/*procesoCompra();*/

@@ -39,18 +39,18 @@ body {
   place-items: center;
   min-height: 90%;
   min-width: 90%;
-  grid-template-areas: "header" "hr1" "main" "hr2" "footer";
+  grid-template-areas: "header" "hr1" "welcome" "hr2" "main" "hr3" "footer";
 }
 
 .header {
   grid-area: header;
-  margin: 30px auto 20px;
+  margin: 40px auto 20px;
 }
 .header h1 {
   font-size: clamp(4rem, 2vw, 6rem);
   background: linear-gradient(to left, #2551a8, #72419d);
   -webkit-background-clip: text;
-  background-clip: text; /*remove if trouble*/
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3), 0px 0px 10px rgba(66, 135, 245, 0.6);
   letter-spacing: 0.15em;
@@ -58,6 +58,40 @@ body {
 
 .hr1 {
   grid-area: hr1;
+  margin: 10px auto;
+}
+
+.welcome {
+  grid-area: welcome;
+  margin: 10px auto;
+}
+.welcome p {
+  font-size: clamp(1.5rem, 2vw, 3rem);
+  max-width: 90vw;
+  color: white;
+  margin: 30px 40px;
+  text-align: center;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  letter-spacing: 0.08em;
+}
+.welcome .mediaPlayer {
+  width: 80%;
+  align-self: center;
+  margin: 0px auto;
+}
+.welcome .mediaPlayer button {
+  width: 100px;
+  margin: 0px auto 10px;
+  height: auto;
+}
+.welcome .mediaPlayer button img {
+  width: 100px;
+  height: auto;
+}
+
+.hr2 {
+  grid-area: hr2;
 }
 
 .main {
@@ -94,9 +128,10 @@ body {
   margin: 10px auto;
 }
 .main .subGrid div .botones button {
-  height: 25px;
-  min-width: 25px;
-  margin: 2px auto;
+  font-size: 20px;
+  height: 40px;
+  min-width: 40px;
+  margin: 5px auto;
 }
 .main div {
   width: 90%;
@@ -113,8 +148,8 @@ body {
   transform: scale(1.05);
 }
 
-.hr2 {
-  grid-area: hr2;
+.hr3 {
+  grid-area: hr3;
 }
 
 .footer {
@@ -159,6 +194,10 @@ body {
     max-width: 80%;
     height: auto;
   }
+  body .main .subGrid div .botones {
+    margin: 15px auto;
+    width: 60%;
+  }
   body .footer {
     height: auto;
     min-width: 80%;
@@ -186,7 +225,7 @@ body {
     grid-template-columns: 1fr;
     grid-auto-rows: auto;
     place-items: center;
-    gap: 8px 2px;
+    gap: 50px 2px;
   }
   body .main .subGrid h2 {
     font-size: clamp(1.8rem, 2vw, 3rem);
@@ -199,7 +238,7 @@ body {
 @media (max-width: 480px) {
   body {
     max-width: 480px;
-    min-width: 300px;
+    min-width: 460px;
   }
 }
 
