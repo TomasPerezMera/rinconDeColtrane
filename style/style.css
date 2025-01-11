@@ -8,7 +8,7 @@
   font-family: "Clarendon Regular";
   font-style: normal;
   font-weight: normal;
-  src: local("Clarendon Regular"), url("/style/ClarendonRegular.woff") format("woff");
+  src: local("Clarendon Regular"), url("./style/ClarendonRegular.woff") format("woff");
 }
 body {
   background-color: black;
