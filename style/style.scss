@@ -30,6 +30,9 @@ body {
         -webkit-background-clip: text;
         background-clip: text; /*remove if trouble*/
         -webkit-text-fill-color: transparent;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3),
+        0px 0px 10px rgba(66, 135, 245, 0.6);
+        letter-spacing: 0.15em;
     }
 }
 .hr1 { grid-area: hr1;}
@@ -53,6 +56,9 @@ body {
             overflow-wrap: break-word;
             word-break: break-word;
             margin: 10px auto;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3),
+            0px 0px 10px rgba(66, 135, 245, 0.6);
+            letter-spacing: 0.1em;
         }
         div {
             place-items: center;
@@ -178,4 +184,3 @@ body {
         min-width: 300px;
     }
 }
-
