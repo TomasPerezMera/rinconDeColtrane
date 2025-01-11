@@ -3,23 +3,23 @@
         "id": 1,
         "name": "Blue Train",
         "year": 1957,
-        "price": 30400,
+        "price": 46.400,
         "amount": 0,
         "source": "./images/covers/blueTrain.jpg"
     },
     {
         "id": 2,
-        "name": "Soultrane",
+        "name": "Stardust",
         "year": 1958,
-        "price": 27600,
+        "price": 67.200,
         "amount": 0,
-        "source": "./images/covers/soulTrane.jpg"
+        "source": "./images/covers/stardust.jpg"
     },
     {
         "id": 3,
         "name": "Giant Steps",
         "year": 1959,
-        "price": 48,
+        "price": 86.200,
         "amount": 0,
         "source": "./images/covers/giantSteps.jpg"
     },
@@ -27,7 +27,7 @@
         "id": 4,
         "name": "Ballads",
         "year": 1961,
-        "price": 24840,
+        "price": 64.840,
         "amount": 0,
         "source": "./images/covers/ballads.jpg"
     },
@@ -35,7 +35,7 @@
         "id": 5,
         "name": "My Favorite Things",
         "year": 1961,
-        "price": 40570,
+        "price": 58.570,
         "amount": 0,
         "source": "./images/covers/myFavoriteThings.jpg"
     },
@@ -43,7 +43,7 @@
         "id": 6,
         "name": "John Coltrane and Johnny Hartman",
         "year": 1963,
-        "price": 45600,
+        "price": 68.300,
         "amount": 0,
         "source": "./images/covers/johnnyHartman.jpg"
     },
@@ -51,7 +51,7 @@
         "id": 7,
         "name": "A Love Supreme",
         "year": 1964,
-        "price": 50300,
+        "price": 76.100,
         "amount": 0,
         "source": "./images/covers/aLoveSupreme.jpg"
     },
@@ -59,7 +59,7 @@
         "id": 8,
         "name": "Meditations",
         "year": 1965,
-        "price": 38880,
+        "price": 63.880,
         "amount": 0,
         "source": "./images/covers/meditations.jpg"
     },
@@ -67,7 +67,7 @@
         "id": 9,
         "name": "Ascension",
         "year": 1966,
-        "price": 27180,
+        "price": 57.180,
         "amount": 0,
         "source": "./images/covers/ascension.jpg"
     }

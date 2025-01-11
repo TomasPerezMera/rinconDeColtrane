@@ -66,6 +66,12 @@ body {
             }
         }
     }
+    .separator {
+        width: 100px;
+        height: 5px;
+        padding: 10px;
+        margin: 100px auto;
+    }
 }
 .hr2 { grid-area: hr2;}
 .main { grid-area: main;
