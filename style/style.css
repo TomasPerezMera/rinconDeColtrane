@@ -141,7 +141,7 @@ body {
 }
 .main .subGrid .price {
   font-size: clamp(1rem, 2vw, 1.5rem);
-  margin: 10px auto 10px;
+  margin: 10px auto;
 }
 .main div {
   width: 90%;
@@ -208,19 +208,22 @@ body {
     margin: 15px auto;
     width: 60%;
   }
+  body .main .subGrid .price {
+    font-size: clamp(1.4rem, 2vw, 2rem);
+  }
   body .footer {
     height: auto;
     min-width: 80%;
     width: 100%;
-    padding: 20px 10px;
+    padding: 5px;
     margin: 5px auto;
   }
-  body .footer img {
+  body .footer figure a img {
     height: auto;
     width: 100%;
     transition: 2s linear;
   }
-  body .footer img:hover {
+  body .footer figure a img:hover {
     transform: scale(1.15);
   }
 }
@@ -244,6 +247,9 @@ body {
     max-width: 80%;
     height: auto;
   }
+  body .main .subGrid .price {
+    font-size: clamp(1.5rem, 2vw, 2rem);
+  }
 }
 @media (max-width: 480px) {
   body {
@@ -252,6 +258,10 @@ body {
   }
   body .header h1 {
     font-size: clamp(2.5rem, 2vw, 3rem);
+  }
+  body .main .subGrid div img {
+    max-width: 100%;
+    height: auto;
   }
 }
 
