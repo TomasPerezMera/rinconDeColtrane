@@ -20,7 +20,7 @@ fetch('./js/catalog.json')
                 <h2>
                     ${album.name}
                 </h2>
-                <h2>
+                <h2 class="price">
                     ${new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS',
                         maximumFractionDigits: 0 }).format(album.price)}
                 </h2>

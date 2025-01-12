@@ -110,6 +110,10 @@ body {
                 }
             }
         }
+        .price {
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            margin: 10px auto 10px;
+        }
     }
     div {
         width: 90%;

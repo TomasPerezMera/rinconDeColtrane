@@ -25,7 +25,7 @@
     },
     {
         "id": 4,
-        "name": "Ballads",
+        "name": "Ballads<br><br>",
         "year": 1961,
         "price": 64840,
         "amount": 0,
@@ -33,7 +33,7 @@
     },
     {
         "id": 5,
-        "name": "My Favorite Things",
+        "name": "My Favorite Things<br><br>",
         "year": 1961,
         "price": 58570,
         "amount": 0,
