@@ -20,6 +20,10 @@ fetch('./js/catalog.json')
                 <h2>
                     ${album.name}
                 </h2>
+                <h2>
+                    ${new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS',
+                        maximumFractionDigits: 0 }).format(album.price)}
+                </h2>
                 <div class="botones d-flex align-items-center justify-content-center">
                     <button type="button" class="btn btn-outline-light btn-sm fw-bold d-flex justify-content-center align-items-center decrease-btn" data-id="${album.id}">-</button>
                     <button type="button" class="btn btn-light btn-sm fw-bold mx-2 d-flex justify-content-center align-items-center item-counter" data-id="${album.id}" disabled>${album.amount}</button>
@@ -47,6 +51,10 @@ musicToggle.addEventListener('click', () => {
         musicImg.src = "./assets/playButton.png";
     }
 })
+
+coltraneProject.addEventListener('ended', () => {
+    musicImg.src = "./assets/playButton.png";
+});
 
 /*Lógica del E-Commerce*/
 
