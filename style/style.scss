@@ -129,6 +129,16 @@ body {
             }
         }
     }
+    .carritoDisplay {
+        margin: 5px auto;
+        p {
+            font-size: clamp(1.5rem, 2vw, 3rem);
+            margin: 10px auto;
+            padding: 10px;
+            width: 80%;
+            height: auto;
+        }
+    }
 }
 .hr3 { grid-area: hr3;}
 .footer { grid-area: footer;

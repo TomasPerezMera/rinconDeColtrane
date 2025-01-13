@@ -13,7 +13,6 @@ fetch('./js/catalog.json')
         });
         for (const album of data) {
             let albumItem = document.createElement("div");
-
             albumItem.innerHTML = `
             <div class="d-flex flex-column" id="album-${album.id}">
                 <img src="${album.source}" alt="${album.id}º Album Cover" height="400" width="400">
@@ -56,14 +55,63 @@ coltraneProject.addEventListener('ended', () => {
     musicImg.src = "./assets/playButton.png";
 });
 
-/*Lógica del E-Commerce*/
+/* Función Carrito*/
 
 let precioCarrito = 0;
-let seguirComprando = true;
 
 function totalCarrito() {
     return(`El precio total de tu carrito es: $` + (precioCarrito) + `.`)
 }
+
+let pintarCarrito = () => {
+    const carritoDisplay = document.querySelector('.carritoDisplay');
+        let carritoText = document.createElement("p");
+        carritoText.innerHTML = `Tu carrito está vacío.`
+        carritoDisplay.appendChild(carritoText);
+}
+
+document.addEventListener("DOMContentLoaded", pintarCarrito());
+
+function updateCarrito(albumId) {
+    return;
+}
+
+
+/*Asignación de Botones*/
+
+function updateCounterDisplay(albumId) {
+    const counter = document.querySelector(`.item-counter[data-id="${albumId}"]`);
+    if (counter) {
+        counter.textContent = itemCounts[albumId];
+    }
+}
+
+document.addEventListener("click", (event) => {
+    const albumId = event.target.getAttribute("data-id");
+    if (!albumId) return;
+    if (event.target.classList.contains("increase-btn")) {
+        if (itemCounts[albumId] < 3) {
+            itemCounts[albumId]++;
+            updateCounterDisplay(albumId);
+            updateCarrito(albumId);
+        }
+    }
+    if (event.target.classList.contains("decrease-btn")) {
+        if (itemCounts[albumId] > 0) {
+            itemCounts[albumId]--;
+            updateCounterDisplay(albumId);
+            updateCarrito(albumId);
+        }
+    }
+});
+
+
+
+/*Lógica del E-Commerce*/
+
+let seguirComprando = true;
+
+
 
 function exitMessage() {
     return("Esperamos que estés satisfecho con la compra!\nRecuerda que puedes continuar explorando nuestro sitio, para llevarte los mejores álbumes que el jazz tiene para ofrecer.")
@@ -225,36 +273,6 @@ function procesoCompra() {
             break;
     }
 }
-
-
-/*Asignación de Botones*/
-
-
-
-
-function updateCounterDisplay(albumId) {
-    const counter = document.querySelector(`.item-counter[data-id="${albumId}"]`);
-    if (counter) {
-        counter.textContent = itemCounts[albumId];
-    }
-}
-
-document.addEventListener("click", (event) => {
-    const albumId = event.target.getAttribute("data-id");
-    if (!albumId) return;
-    if (event.target.classList.contains("increase-btn")) {
-        if (itemCounts[albumId] < 3) {
-            itemCounts[albumId]++;
-            updateCounterDisplay(albumId);
-        }
-    }
-    if (event.target.classList.contains("decrease-btn")) {
-        if (itemCounts[albumId] > 0) {
-            itemCounts[albumId]--;
-            updateCounterDisplay(albumId);
-        }
-    }
-});
 
 
 /*Catalog Display (obsolote)*/

@@ -157,6 +157,16 @@ body {
 .main div img:hover {
   transform: scale(1.05);
 }
+.main .carritoDisplay {
+  margin: 5px auto;
+}
+.main .carritoDisplay p {
+  font-size: clamp(1.5rem, 2vw, 3rem);
+  margin: 10px auto;
+  padding: 10px;
+  width: 80%;
+  height: auto;
+}
 
 .hr3 {
   grid-area: hr3;
