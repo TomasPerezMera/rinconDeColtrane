@@ -61,6 +61,8 @@ body {
 }
 .welcome { grid-area: welcome;
     margin: 10px auto;
+    padding: 10px;
+    width: 100%;
     p {
         @include text;
     }
@@ -87,6 +89,7 @@ body {
     margin: 10px auto;
     padding: 10px;
     width: 100%;
+    max-width: 100%;
     height: auto;
     .subGrid { display: grid;
         grid-template-columns: repeat(3, 1fr);
