@@ -5,7 +5,8 @@
         "year": 1957,
         "price": 46400,
         "amount": 0,
-        "source": "./images/covers/blueTrain.jpg"
+        "source": "./images/covers/blueTrain.jpg",
+        "description": "Blue Train is a studio album by John Coltrane, released in 1957 on Blue Note Records. Recorded at the Van Gelder Studio in Hackensack, New Jersey, it is the only Blue Note recording by Coltrane as session leader. It has been certified a gold record by the RIAA. The album was recorded in the midst of Coltrane's residency at the Five Spot as a member of the Thelonious Monk quartet. The personnel include Coltrane's Miles Davis bandmates, Paul Chambers on bass and Philly Joe Jones on drums, both of whom had worked with Coltrane on Davis' album Milestones."
     },
     {
         "id": 2,
@@ -13,7 +14,8 @@
         "year": 1958,
         "price": 67200,
         "amount": 0,
-        "source": "./images/covers/stardust.jpg"
+        "source": "./images/covers/stardust.jpg",
+        "description": "Stardust is an album by jazz musician John Coltrane that was released in 1963 by Prestige Records. It was assembled from two separate sessions at the studio of Rudy Van Gelder in Hackensack, New Jersey in 1958. As Coltrane's fame grew during the 1960s long after he had stopped recording for the label, Prestige used unissued recordings to create new marketable albums without Coltrane's input or approval."
     },
     {
         "id": 3,
@@ -21,7 +23,8 @@
         "year": 1959,
         "price": 86200,
         "amount": 0,
-        "source": "./images/covers/giantSteps.jpg"
+        "source": "./images/covers/giantSteps.jpg"        ,
+        "description": "Giant Steps is the fifth studio album by jazz musician John Coltrane as leader, released in 1960 on Atlantic Records. His first album for his new label Atlantic, it is the breakthrough album for Coltrane as a leader, and many of its tracks have become practice templates for jazz saxophonists. In 2004, it was one of fifty recordings chosen that year by the Library of Congress to be added to the National Recording Registry."
     },
     {
         "id": 4,
@@ -29,7 +32,8 @@
         "year": 1961,
         "price": 64840,
         "amount": 0,
-        "source": "./images/covers/ballads.jpg"
+        "source": "./images/covers/ballads.jpg",
+        "description":"Ballads is a jazz album by John Coltrane. It was recorded in December 1961 and 1962, and released on the Impulse! label in 1963 as A-32 (mono) and later AS-32 (stereo). Critic Gene Lees stated that the quartet had never played the tunes before. 'They arrived with music-store sheet music of the songs' Lees has said: 'They were not 'standards' or tunes that they knew, and I think it tells you a lot about John that he chose to do that. The music was a complete departure from anything that had gone before.'"
     },
     {
         "id": 5,
@@ -37,7 +41,8 @@
         "year": 1961,
         "price": 58570,
         "amount": 0,
-        "source": "./images/covers/myFavoriteThings.jpg"
+        "source": "./images/covers/myFavoriteThings.jpg",
+        "description":"My Favorite Things is the seventh studio album by jazz musician John Coltrane, released in 1961 on Atlantic Records, catalogue SD-1361. It was the first album to feature Coltrane playing soprano saxophone. An edited version of the title track became a hit single that gained popularity in 1961 on radio. The record became a major commercial success. In 1998, the album received the Grammy Hall of Fame award."
     },
     {
         "id": 6,
@@ -45,7 +50,8 @@
         "year": 1963,
         "price": 68300,
         "amount": 0,
-        "source": "./images/covers/johnnyHartman.jpg"
+        "source": "./images/covers/johnnyHartman.jpg",
+        "description":"John Coltrane and Johnny Hartman is a 1963 studio album featuring John Coltrane and Johnny Hartman. It was inducted into the Grammy Hall of Fame in 2013. Although it is often reported that Coltrane and Hartman had known each other since their days playing with Dizzy Gillespie's band in the late 1940s, the truth is that their time in the band never overlapped. The album was recorded at the Van Gelder Studio in Englewood Cliffs, New Jersey. The album was released in 1963, at a time when Hartman was riding high on the success of his album I Just Dropped By to Say Hello."
     },
     {
         "id": 7,
@@ -53,7 +59,8 @@
         "year": 1964,
         "price": 76100,
         "amount": 0,
-        "source": "./images/covers/aLoveSupreme.jpg"
+        "source": "./images/covers/aLoveSupreme.jpg",
+        "description":""
     },
     {
         "id": 8,
@@ -61,7 +68,8 @@
         "year": 1965,
         "price": 63880,
         "amount": 0,
-        "source": "./images/covers/meditations.jpg"
+        "source": "./images/covers/meditations.jpg",
+        "description":""
     },
     {
         "id": 9,
@@ -69,6 +77,7 @@
         "year": 1966,
         "price": 57180,
         "amount": 0,
-        "source": "./images/covers/ascension.jpg"
+        "source": "./images/covers/ascension.jpg",
+        "description":""
     }
 ]
