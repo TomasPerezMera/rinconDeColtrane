@@ -107,7 +107,7 @@ document.addEventListener("click", (event) => {
 
 
 
-/*Lógica del E-Commerce*/
+/*Lógica del E-Commerce - Mucho Legacy code del prompt-based early development*/
 
 let seguirComprando = true;
 
