@@ -94,7 +94,7 @@ document.addEventListener("click", (event) => {
         } else {
             Toastify({
                 text: "Tu carrito está lleno!",
-                duration: 2500
+                duration: 2000
                 }).showToast();
         }
     }
@@ -139,10 +139,6 @@ document.addEventListener("DOMContentLoaded", pintarCarrito);
 
 function updateCarrito(albumId) {
     const album = catalogo.find(item => item.id === albumId);
-    if (!album) {
-        console.error(`Album with ID ${albumId} not found in catalogo`);
-        return;
-    }
     if (album) {
         precioCarrito = Object.keys(itemCounts).reduce((total, id) => {
             const item = catalogo.find(album => album.id === parseInt(id, 10));
