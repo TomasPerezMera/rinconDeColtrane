@@ -3,6 +3,14 @@ let catalogo = [];
 let  itemCounts = {};
 const carrito = [];
 
+function precioARS(precio) {
+    return new Intl.NumberFormat('es-AR', {
+        style: 'currency',
+        currency: 'ARS',
+        maximumFractionDigits: 0
+    }).format(precio);
+}
+
 fetch('./js/catalog.json')
     .then(response => response.json())
     .then(data => {
@@ -13,6 +21,9 @@ fetch('./js/catalog.json')
             itemCounts[album.id] = 0;
         });
         for (const album of data) {
+            if(album.id == 4 || album.id == 5) {
+                album.name = `${album.name}<br><br>`;
+            }
             let albumItem = document.createElement("div");
             albumItem.innerHTML = `
             <div class="d-flex flex-column" id="album-${album.id}">
@@ -21,8 +32,7 @@ fetch('./js/catalog.json')
                     ${album.name}
                 </h2>
                 <h2 class="price">
-                    ${new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS',
-                        maximumFractionDigits: 0 }).format(album.price)}
+                    ${precioARS(album.price)}
                 </h2>
                 <div class="botones d-flex align-items-center justify-content-center">
                     <button type="button" class="btn btn-outline-light btn-sm fw-bold d-flex justify-content-center align-items-center decrease-btn" data-id="${album.id}">-</button>
@@ -76,13 +86,12 @@ document.addEventListener("click", (event) => {
         if (itemCounts[albumId] < 5 && globalItemCount < 5) {
             itemCounts[albumId]++;
             globalItemCount++;
-            console.log("ItemCounts after increase:", itemCounts);
             updateCounterDisplay(albumId);
             updateCarrito(albumId);
         } else {
             Toastify({
                 text: "Tu carrito está lleno!",
-                duration: 3000
+                duration: 2500
                 }).showToast();
         }
     }
@@ -90,7 +99,6 @@ document.addEventListener("click", (event) => {
         if (itemCounts[albumId] > 0) {
             itemCounts[albumId]--;
             globalItemCount--;
-            console.log("ItemCounts after decrease:", itemCounts);
             updateCounterDisplay(albumId);
             updateCarrito (albumId);
         }
@@ -115,9 +123,9 @@ let pintarCarrito = () => {
     }
     const carritoText = carrito.map(album => {
         const cantidad = itemCounts[album.id] || 0;
-        return `Nombre: ${album.name}, Precio: $${album.price}, Cantidad: ${cantidad}`;
+        return `Nombre: ${album.name}, Precio: ${precioARS(album.price)}, Cantidad: ${cantidad}`;
     }).join("<br>");
-    const totalText = `El precio total de tu carrito es: ${new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', maximumFractionDigits: 0 }).format(precioCarrito)}.`;
+    const totalText = `El precio total de tu carrito es: ${precioARS(precioCarrito)}.`;
     const content = document.createElement("p");
     content.innerHTML = `Tu carrito actual:<br>${carritoText}<br>${totalText}`;
     carritoDisplay.appendChild(content);
@@ -142,16 +150,23 @@ function updateCarrito(albumId) {
         } else if (itemCounts[albumId] === 0) {
             carrito = carrito.filter(item => item.id !== albumId);
         }
-        console.log("Updated Carrito:", carrito);
-        console.log("Updated Precio Carrito:", precioCarrito);
         pintarCarrito();
     }
     return;
 }
 
+/*Botones de Compra*/
+
+const carritoBtn = document.getElementById('carritoBtn');
+const trashBtn = document.getElementById('trashBtn');
+
+
+
+
+/*
 console.log('ItemCounts:', itemCounts);
 console.log('pintarCarrito called:', carrito, precioCarrito);
 console.log('Carrito:', carrito);
 console.log('Precio Carrito:', precioCarrito);
-
+*/
 console.log(catalogo);
