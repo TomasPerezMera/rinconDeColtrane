@@ -77,7 +77,11 @@ function updateCarrito(albumId) {
 }
 
 
-/*Asignación de Botones*/
+/*Asignación de Botones
+
+El itemCounts tiene que ser global!! En plan 3 vinilos máx x compra!
+
+algo como un while{itemCounts <= 3}.... (googlesearch: JS simbolo menor o igual?)*/
 
 function updateCounterDisplay(albumId) {
     const counter = document.querySelector(`.item-counter[data-id="${albumId}"]`);
@@ -86,19 +90,29 @@ function updateCounterDisplay(albumId) {
     }
 }
 
+let globalItemCount = 0;
+
 document.addEventListener("click", (event) => {
     const albumId = event.target.getAttribute("data-id");
     if (!albumId) return;
     if (event.target.classList.contains("increase-btn")) {
-        if (itemCounts[albumId] < 3) {
+        if (itemCounts[albumId] < 3 && globalItemCount < 5) {
             itemCounts[albumId]++;
+            globalItemCount++;
             updateCounterDisplay(albumId);
             updateCarrito(albumId);
+            console.log(globalItemCount);
+        } else {
+            Toastify({
+                text: "Ups! Carrito lleno!",
+                duration: 3000
+                }).showToast();
         }
     }
     if (event.target.classList.contains("decrease-btn")) {
         if (itemCounts[albumId] > 0) {
             itemCounts[albumId]--;
+            globalItemCount--;
             updateCounterDisplay(albumId);
             updateCarrito(albumId);
         }
@@ -142,11 +156,6 @@ function exitLoop() {
 function finalizarCompra() {
     alert("Muy bien! Tu orden ha sido recibida con éxito... Y gracias a la magia del Santo Coltrane, ¡te vas a llevar los ítems de tu carrito, de forma GRATUITA!\n¿¡No dan ganas de tocar un sólo de saxofón de 30 minutos de tanta alegría?!");
     exitLoop();
-}
-
-function excesoCantidad() {
-    alert("Lo sentimos, has seleccionado demasiadas veces este ítem! Por favor, elige otro disco para comprar, o finaliza tu compra.");
-    procesoCompra();
 }
 
 function procesoCompra() {

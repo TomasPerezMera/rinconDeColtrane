@@ -45,7 +45,7 @@ body {
 .header { grid-area: header;
     margin: 40px auto 20px;
     h1 {
-        font-size: clamp(4rem, 2vw, 8rem);
+        font-size: clamp(4rem, 2vw, 6rem);
         background: linear-gradient(to left, $blue2, $violet);
         -webkit-background-clip: text;
         background-clip: text;
@@ -83,7 +83,7 @@ body {
 }
 .hr2 { grid-area: hr2;}
 .main { grid-area: main;
-    margin: 20px auto;
+    margin: 10px auto;
     padding: 10px;
     width: 100%;
     height: auto;
@@ -123,24 +123,35 @@ body {
             margin: 10px auto;
         }
     }
-    div {
+    .purchaseDisplay {
         width: 90%;
         height: auto;
         padding: 2px;
-        margin: 10px;
-        img {
-            max-width: 100%;
-            height: auto;
-            transition: 3s linear;
-            &:hover {
-                transform: scale(1.05);
+        margin: 10px auto;
+        .carritoDisplay {
+            margin: 5px auto;
+            p {
+                @include text;
             }
         }
-    }
-    .carritoDisplay {
-        margin: 5px auto;
-        p {
-            @include text;
+        .botonesCompra {
+            margin: 10px auto;
+            width: 80%;
+            button {
+                height: 100px;
+                width: 100px;
+                margin: 5px auto;
+                padding: 5px;
+                img {
+                    width: 100px;
+                    max-width: 100%;
+                    height: auto;
+                    transition: 3s linear;
+                    &:hover {
+                        transform: scale(1.05);
+                    }
+                }
+            }
         }
     }
 }

@@ -47,7 +47,7 @@ body {
   margin: 40px auto 20px;
 }
 .header h1 {
-  font-size: clamp(4rem, 2vw, 8rem);
+  font-size: clamp(4rem, 2vw, 6rem);
   background: linear-gradient(to left, #2551a8, #72419d);
   -webkit-background-clip: text;
   background-clip: text;
@@ -102,7 +102,7 @@ body {
 
 .main {
   grid-area: main;
-  margin: 20px auto;
+  margin: 10px auto;
   padding: 10px;
   width: 100%;
   height: auto;
@@ -143,24 +143,16 @@ body {
   font-size: clamp(1rem, 2vw, 1.5rem);
   margin: 10px auto;
 }
-.main div {
+.main .purchaseDisplay {
   width: 90%;
   height: auto;
   padding: 2px;
-  margin: 10px;
+  margin: 10px auto;
 }
-.main div img {
-  max-width: 100%;
-  height: auto;
-  transition: 3s linear;
-}
-.main div img:hover {
-  transform: scale(1.05);
-}
-.main .carritoDisplay {
+.main .purchaseDisplay .carritoDisplay {
   margin: 5px auto;
 }
-.main .carritoDisplay p {
+.main .purchaseDisplay .carritoDisplay p {
   font-size: clamp(1.5rem, 2vw, 3rem);
   max-width: 90vw;
   color: white;
@@ -169,6 +161,25 @@ body {
   overflow-wrap: break-word;
   word-break: break-word;
   letter-spacing: 0.08em;
+}
+.main .purchaseDisplay .botonesCompra {
+  margin: 10px auto;
+  width: 80%;
+}
+.main .purchaseDisplay .botonesCompra button {
+  height: 100px;
+  width: 100px;
+  margin: 5px auto;
+  padding: 5px;
+}
+.main .purchaseDisplay .botonesCompra button img {
+  width: 100px;
+  max-width: 100%;
+  height: auto;
+  transition: 3s linear;
+}
+.main .purchaseDisplay .botonesCompra button img:hover {
+  transform: scale(1.05);
 }
 
 .hr3 {

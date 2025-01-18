@@ -19,7 +19,7 @@
     <hr class="hr1">
     <div class="welcome">
         <div class="mediaPlayer text-center">
-            <button id="musicToggle" class="btn btn-sm d-flex justify-content-center align-items-center">
+            <button type="button" id="musicToggle" class="btn btn-sm d-flex justify-content-center align-items-center">
                 <img id="musicImg" src="./assets/playButton.png" alt="Play Button for Music">
             </button>
             <audio id="coltraneProject" src="./assets/coltraneProjectFinal.mp3"></audio>
@@ -29,11 +29,11 @@
         </p>
         <div class="separator"></div>
         <p data-aos="fade-down" data-aos-duration="1500">
-            Un pequeño, pero importante rincón de Internet, donde podrás adquirir algunos de los álbumes más célebres del legendario saxofonista.
+            Un pequeño, pero importante rincón de Internet, donde podrás adquirir algunos de los álbumes más célebres del legendario saxofonista en formato de vinilo.
         </p>
         <div class="separator"></div>
         <p data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500">
-            A continuación, procederemos a listar los ítems disponibles.<br>Debido al stock limitado, se permite un máximo de 3 unidades por cada compra - elegí con cuidado!
+            A continuación, procederemos a listar los ítems disponibles.<br>Debido al stock limitado, se permite un máximo de 5 vinilos por compra - elegí con cuidado!
         </p>
     </div>
     <hr class="hr2">
@@ -41,18 +41,20 @@
         <div class="subGrid">
         </div>
         <hr class="hr3">
-        <div class="montoCompra">
+        <div class="purchaseDisplay d-flex flex-column justify-content-center align-items-center">
+            <div class="montoCompra">
+            </div>
+            <div class="carritoDisplay">
+            </div>
+            <div class="botonesCompra d-flex flex-row justify-content-center align-items-right">
+                <button type="button" id="wipeCarrito" class="btn btn-sm d-flex justify-content-center align-items-center">
+                    <img id="trashCan" src="./assets/trashIcon.jpg" alt="Eliminar Contenidos del Carrito" height="100" width="100">
+                </button>
+                <button type="button" id="botonCarrito" class="btn btn-sm d-flex justify-content-center align-items-center">
+                    <img id="shoppingCart" src="./assets/shoppingCart.png" alt="Botón de Compra" height="100" width="100">
+                </button>
+            </div>
         </div>
-        <div class="carritoDisplay">
-        </div>
-        <!--
-        <button id="botonCarrito" class="btn btn-sm d-flex justify-content-center align-items-center">
-            <img id="shoppingCart" src="./assets/shoppingCart.png" alt="Botón de Compra">
-        </button>
-        <button id="wipeCarrito" class="btn btn-sm d-flex justify-content-center align-items-center">
-            <img id="trashCan" src="./assets/trashIcon.jpg" alt="Eliminar Contenidos del Carrito">
-        </button>
-                --->
     </main>
     <hr>
     <footer class="footer">
