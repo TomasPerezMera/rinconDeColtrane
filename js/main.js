@@ -21,14 +21,11 @@ fetch('./js/catalog.json')
             itemCounts[album.id] = 0;
         });
         for (const album of data) {
-            if(album.id == 4 || album.id == 5) {
-                album.name = `${album.name}<br><br>`;
-            }
             let albumItem = document.createElement("div");
             albumItem.innerHTML = `
             <div class="d-flex flex-column" id="album-${album.id}">
                 <img src="${album.source}" alt="${album.id}º Album Cover" height="400" width="400">
-                <h2>
+                <h2 id="albumTitle-${album.id}">
                     ${album.name}
                 </h2>
                 <h2 class="price">
@@ -41,6 +38,12 @@ fetch('./js/catalog.json')
                 </div>
             </div>`
             subGrid.appendChild(albumItem);
+            if(album.id == 4 || album.id == 5) {
+                const albumTitle = document.getElementById(`albumTitle-${album.id}`);
+                if (albumTitle) {
+                    albumTitle.innerText = `${album.name}\n\n`;
+                }
+            }
         }
 })
 .catch(error => console.error('Error loading JSON:', error));
