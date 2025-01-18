@@ -5,6 +5,24 @@ $blue: #4b6cad;
 $blue2: #2551a8;
 $violet: #72419d;
 
+@mixin separator{
+    width: 100px;
+    height: 5px;
+    padding: 10px;
+    margin: 100px auto;
+}
+
+@mixin text {
+    font-size: clamp(1.5rem, 2vw, 3rem);
+    max-width: 90vw;
+    color:white;
+    margin: 30px 40px;
+    text-align: center;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    letter-spacing: 0.08em;
+}
+
 body {
     display: grid;
     grid-template-columns: 1fr;
@@ -27,7 +45,7 @@ body {
 .header { grid-area: header;
     margin: 40px auto 20px;
     h1 {
-        font-size: clamp(4rem, 2vw, 6rem);
+        font-size: clamp(4rem, 2vw, 8rem);
         background: linear-gradient(to left, $blue2, $violet);
         -webkit-background-clip: text;
         background-clip: text;
@@ -43,14 +61,7 @@ body {
 .welcome { grid-area: welcome;
     margin: 10px auto;
     p {
-        font-size: clamp(1.5rem, 2vw, 3rem);
-        max-width: 90vw;
-        color:white;
-        margin: 30px 40px;
-        text-align: center;
-        overflow-wrap: break-word;
-        word-break: break-word;
-        letter-spacing: 0.08em;
+        @include text;
     }
     .mediaPlayer {
         width: 80%;
@@ -67,10 +78,7 @@ body {
         }
     }
     .separator {
-        width: 100px;
-        height: 5px;
-        padding: 10px;
-        margin: 100px auto;
+        @include separator;
     }
 }
 .hr2 { grid-area: hr2;}
@@ -132,11 +140,7 @@ body {
     .carritoDisplay {
         margin: 5px auto;
         p {
-            font-size: clamp(1.5rem, 2vw, 3rem);
-            margin: 10px auto;
-            padding: 10px;
-            width: 80%;
-            height: auto;
+            @include text;
         }
     }
 }
@@ -166,6 +170,11 @@ body {
         width: 100%;
         .header {
             width: 80%;
+        }
+        .welcome {
+            .separator {
+                margin: 50px auto;
+            }
         }
         .main {
             .subGrid {

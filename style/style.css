@@ -47,7 +47,7 @@ body {
   margin: 40px auto 20px;
 }
 .header h1 {
-  font-size: clamp(4rem, 2vw, 6rem);
+  font-size: clamp(4rem, 2vw, 8rem);
   background: linear-gradient(to left, #2551a8, #72419d);
   -webkit-background-clip: text;
   background-clip: text;
@@ -162,10 +162,13 @@ body {
 }
 .main .carritoDisplay p {
   font-size: clamp(1.5rem, 2vw, 3rem);
-  margin: 10px auto;
-  padding: 10px;
-  width: 80%;
-  height: auto;
+  max-width: 90vw;
+  color: white;
+  margin: 30px 40px;
+  text-align: center;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  letter-spacing: 0.08em;
 }
 
 .hr3 {
@@ -198,6 +201,9 @@ body {
   }
   body .header {
     width: 80%;
+  }
+  body .welcome .separator {
+    margin: 50px auto;
   }
   body .main .subGrid {
     display: grid;
