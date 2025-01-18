@@ -129,6 +129,8 @@ body {
 }
 .main .subGrid div {
   place-items: center;
+  margin: 10px auto;
+  padding: 10px;
 }
 .main .subGrid div .botones {
   margin: 10px auto;
@@ -151,8 +153,6 @@ body {
 }
 .main .purchaseDisplay .carritoDisplay {
   margin: 5px auto;
-}
-.main .purchaseDisplay .carritoDisplay p {
   font-size: clamp(1.5rem, 2vw, 3rem);
   max-width: 90vw;
   color: white;
@@ -176,6 +176,7 @@ body {
   width: 100px;
   max-width: 100%;
   height: auto;
+  padding: 5px;
   transition: 3s linear;
 }
 .main .purchaseDisplay .botonesCompra button img:hover {

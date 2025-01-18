@@ -1,6 +1,7 @@
 /*Import Product Catalog*/
 let catalogo = [];
-const itemCounts = {};
+let  itemCounts = {};
+const carrito = [];
 
 fetch('./js/catalog.json')
     .then(response => response.json())
@@ -55,6 +56,48 @@ coltraneProject.addEventListener('ended', () => {
     musicImg.src = "./assets/playButton.png";
 });
 
+
+/*Asignación de Botones*/
+
+let globalItemCount = 0;
+
+function updateCounterDisplay(albumId) {
+    const counter = document.querySelector(`.item-counter[data-id="${albumId}"]`);
+    if (counter) {
+        counter.textContent = itemCounts[albumId] || 0;
+    }
+}
+
+document.addEventListener("click", (event) => {
+    const albumId = parseInt(event.target.getAttribute("data-id"), 10);
+    if (!albumId) return;
+    itemCounts[albumId] = itemCounts[albumId] || 0;
+    if (event.target.classList.contains("increase-btn")) {
+        if (itemCounts[albumId] < 5 && globalItemCount < 5) {
+            itemCounts[albumId]++;
+            globalItemCount++;
+            console.log("ItemCounts after increase:", itemCounts);
+            updateCounterDisplay(albumId);
+            updateCarrito(albumId);
+        } else {
+            Toastify({
+                text: "Tu carrito está lleno!",
+                duration: 3000
+                }).showToast();
+        }
+    }
+    if (event.target.classList.contains("decrease-btn")) {
+        if (itemCounts[albumId] > 0) {
+            itemCounts[albumId]--;
+            globalItemCount--;
+            console.log("ItemCounts after decrease:", itemCounts);
+            updateCounterDisplay(albumId);
+            updateCarrito (albumId);
+        }
+    }
+});
+
+
 /* Función Carrito*/
 
 let precioCarrito = 0;
@@ -65,236 +108,50 @@ function totalCarrito() {
 
 let pintarCarrito = () => {
     const carritoDisplay = document.querySelector('.carritoDisplay');
-        let carritoText = document.createElement("p");
-        carritoText.innerHTML = `Tu carrito está vacío.`
-        carritoDisplay.appendChild(carritoText);
+    carritoDisplay.innerHTML = "";
+    if (precioCarrito === 0) {
+        carritoDisplay.textContent = "Tu carrito está vacío.";
+        return;
+    }
+    const carritoText = carrito.map(album => {
+        const cantidad = itemCounts[album.id] || 0;
+        return `Nombre: ${album.name}, Precio: $${album.price}, Cantidad: ${cantidad}`;
+    }).join("\n");
+    const totalText = `El precio total de tu carrito es: $${precioCarrito}.`;
+    const content = document.createElement("p");
+    content.textContent = `Tu carrito actual:\n${carritoText}\n${totalText}`;
+    carritoDisplay.appendChild(content);
 }
 
-document.addEventListener("DOMContentLoaded", pintarCarrito());
+document.addEventListener("DOMContentLoaded", pintarCarrito);
+
 
 function updateCarrito(albumId) {
+    const album = catalogo.find(item => item.id === albumId);
+    if (!album) {
+        console.error(`Album with ID ${albumId} not found in catalogo`);
+        return;
+    }
+    if (album) {
+        precioCarrito = Object.keys(itemCounts).reduce((total, id) => {
+            const item = catalogo.find(album => album.id === parseInt(id, 10));
+            return total + (item.price * (itemCounts[id] || 0));
+        }, 0);
+        if (itemCounts[albumId] > 0 && !carrito.some(item => item.id === albumId)) {
+            carrito.push(album);
+        } else if (itemCounts[albumId] === 0) {
+            carrito = carrito.filter(item => item.id !== albumId);
+        }
+        console.log("Updated Carrito:", carrito);
+        console.log("Updated Precio Carrito:", precioCarrito);
+        pintarCarrito();
+    }
     return;
 }
 
-
-/*Asignación de Botones
-
-El itemCounts tiene que ser global!! En plan 3 vinilos máx x compra!
-
-algo como un while{itemCounts <= 3}.... (googlesearch: JS simbolo menor o igual?)*/
-
-function updateCounterDisplay(albumId) {
-    const counter = document.querySelector(`.item-counter[data-id="${albumId}"]`);
-    if (counter) {
-        counter.textContent = itemCounts[albumId];
-    }
-}
-
-let globalItemCount = 0;
-
-document.addEventListener("click", (event) => {
-    const albumId = event.target.getAttribute("data-id");
-    if (!albumId) return;
-    if (event.target.classList.contains("increase-btn")) {
-        if (itemCounts[albumId] < 3 && globalItemCount < 5) {
-            itemCounts[albumId]++;
-            globalItemCount++;
-            updateCounterDisplay(albumId);
-            updateCarrito(albumId);
-            console.log(globalItemCount);
-        } else {
-            Toastify({
-                text: "Ups! Carrito lleno!",
-                duration: 3000
-                }).showToast();
-        }
-    }
-    if (event.target.classList.contains("decrease-btn")) {
-        if (itemCounts[albumId] > 0) {
-            itemCounts[albumId]--;
-            globalItemCount--;
-            updateCounterDisplay(albumId);
-            updateCarrito(albumId);
-        }
-    }
-});
-
-
-
-/*Lógica del E-Commerce - Mucho Legacy code del prompt-based early development*/
-
-let seguirComprando = true;
-
-
-
-function exitMessage() {
-    return("Esperamos que estés satisfecho con la compra!\nRecuerda que puedes continuar explorando nuestro sitio, para llevarte los mejores álbumes que el jazz tiene para ofrecer.")
-}
-
-function compraLoop() {
-    const seguirComprando = confirm("¿Deseas seguir comprando?");
-    if(seguirComprando) {
-        procesoCompra();
-    } else {
-        alert(`Muchas gracias por tu compra! ` + totalCarrito())
-        finalizarCompra();
-    }
-}
-
-function exitLoop() {
-    const repetir = confirm("¿Deseas repetir el proceso de compra?");
-    if(repetir) {
-        alert("Oído cocina! Un dulce saxofón nos transporta al principio del proceso de compras...");
-        catalogo.forEach(catalogo => catalogo.amount = 0);
-        precioCarrito = 0;
-        procesoCompra();
-    } else {
-        alert(exitMessage());
-    }
-}
-
-function finalizarCompra() {
-    alert("Muy bien! Tu orden ha sido recibida con éxito... Y gracias a la magia del Santo Coltrane, ¡te vas a llevar los ítems de tu carrito, de forma GRATUITA!\n¿¡No dan ganas de tocar un sólo de saxofón de 30 minutos de tanta alegría?!");
-    exitLoop();
-}
-
-function procesoCompra() {
-    let primerSeleccion = prompt("Selecciona el artículo deseado. Puedes cancelar la compra marcando 0. También puedes consultar el estado de tu carrito ingresando 10.");
-    if (primerSeleccion === null) {
-        alert("Has cancelado la compra. ¡Te esperamos la próxima vez!");
-        return;
-    }
-    primerSeleccion = parseInt(primerSeleccion);
-    switch(primerSeleccion) {
-        case 1:
-            if(uno.amount == 3) {
-                excesoCantidad();
-            } else {
-                precioCarrito += uno.price;
-                uno.amount++;
-                alert("Has añadido el ítem: "+ uno.name +" a tu carrito! Unidades: " + uno.amount)
-                compraLoop();
-                break;
-            }
-        case 2:
-            if(dos.amount == 3) {
-                excesoCantidad();
-            } else {
-                precioCarrito += dos.price;
-                dos.amount++;
-                alert("Has añadido el ítem: "+ dos.name +" a tu carrito! Unidades: " + dos.amount)
-                compraLoop();
-                break;
-            }
-        case 3:
-            if(tres.amount == 3) {
-                excesoCantidad();
-            } else {
-                precioCarrito += tres.price;
-                tres.amount++;
-                alert(`Has añadido el ítem: `+ tres.name +` a tu carrito! Unidades: ` + tres.amount)
-                compraLoop();
-                break;
-            }
-        case 4:
-            if(cuatro.amount == 3) {
-                excesoCantidad();
-            } else {
-                precioCarrito += cuatro.price;
-                cuatro.amount++;
-                alert(`Has añadido el ítem: `+ cuatro.name +` a tu carrito! Unidades: ` + cuatro.amount)
-                compraLoop();
-                break;
-            }
-        case 5:
-            if(cinco.amount == 3) {
-                excesoCantidad();
-            } else {
-                precioCarrito += cinco.price;
-                cinco.amount++;
-                alert("Has añadido el ítem: "+ cinco.name +" a tu carrito! Unidades: " + cinco.amount)
-                compraLoop();
-                break;
-            }
-        case 6:
-            if(seis.amount == 3) {
-                excesoCantidad();
-            } else {
-                precioCarrito += seis.price;
-                seis.amount++;
-                alert("Has añadido el ítem: "+ seis.name +" a tu carrito! Unidades: " + seis.amount)
-                compraLoop();
-                break;
-            }
-        case 7:
-            if(siete.amount == 3) {
-                excesoCantidad();
-            } else {
-                precioCarrito += siete.price;
-                siete.amount++;
-                alert("Has añadido el ítem: "+ siete.name +" a tu carrito! Unidades: " + siete.amount)
-                compraLoop();
-                break;
-            }
-        case 8:
-            if(ocho.amount == 3) {
-                excesoCantidad();
-            } else {
-                precioCarrito += ocho.price;
-                ocho.amount++;
-                alert("Has añadido el ítem: "+ ocho.name +" a tu carrito! Unidades: " + ocho.amount)
-                compraLoop();
-                break;
-            }
-        case 9:
-            if(nueve.amount == 3) {
-                excesoCantidad();
-            } else {
-                precioCarrito += nueve.price;
-                nueve.amount++;
-                alert("Has añadido el ítem: "+ nueve.name +" a tu carrito! Unidades: " + nueve.amount)
-                compraLoop();
-                break;
-            }
-        case 10:
-            const carritoActual = catalogo.filter(catalogo => catalogo.amount > 0);
-            console.log(carritoActual);
-            if (carritoActual.length === 0) {
-                alert("Tu carrito está vacío.");
-            } else {
-                const CarritoLleno = carritoActual.map(album =>
-                    `Nombre: ${album.name}, Precio: $${album.price}, Cantidad: ${album.amount}`
-                ).join("\n") + `\nEl precio total de tu carrito es: $${precioCarrito}.`;
-                alert(`Tu carrito actual:\n${CarritoLleno}`);
-            }
-            compraLoop();
-            break;
-        case 0:
-            if(precioCarrito == 0) {
-                alert("¡Te esperamos aquí para la próxima ocasión de despilfarro musical!")
-            } else {
-                finalizarCompra();
-            }
-            break;
-        default:
-            alert("La selección ingresada no es válida! Recuerda, sólo aceptamos números del 1 al 9, y 0 para finalizar tu compra.");
-            procesoCompra();
-            break;
-    }
-}
-
-
-/*Catalog Display (obsolote)*/
-
-function mostrarCatalogo() {
-    let catalogoContent = "";
-    for (const item of catalogo) {
-        catalogoContent += `${item.name}, Año: ${item.year} - Precio: $${item.price}\n`;
-    }
-    return catalogoContent;
-}
-
-/*alert(`El inventario disponible es: \n` + mostrarCatalogo())
-procesoCompra();*/
+console.log('ItemCounts:', itemCounts);
+console.log('pintarCarrito called:', carrito, precioCarrito);
+console.log('Carrito:', carrito);
+console.log('Precio Carrito:', precioCarrito);
 
 console.log(catalogo);

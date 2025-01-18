@@ -1,5 +1,6 @@
 
 @use "global";
+@use "page404";
 
 $blue: #4b6cad;
 $blue2: #2551a8;
@@ -108,6 +109,8 @@ body {
         }
         div {
             place-items: center;
+            margin: 10px auto;
+            padding: 10px;
             .botones {
                 margin: 10px auto;
                 button {
@@ -130,9 +133,7 @@ body {
         margin: 10px auto;
         .carritoDisplay {
             margin: 5px auto;
-            p {
-                @include text;
-            }
+            @include text;
         }
         .botonesCompra {
             margin: 10px auto;
@@ -146,6 +147,7 @@ body {
                     width: 100px;
                     max-width: 100%;
                     height: auto;
+                    padding: 5px;
                     transition: 3s linear;
                     &:hover {
                         transform: scale(1.05);
