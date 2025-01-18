@@ -116,10 +116,10 @@ let pintarCarrito = () => {
     const carritoText = carrito.map(album => {
         const cantidad = itemCounts[album.id] || 0;
         return `Nombre: ${album.name}, Precio: $${album.price}, Cantidad: ${cantidad}`;
-    }).join("\n");
-    const totalText = `El precio total de tu carrito es: $${precioCarrito}.`;
+    }).join("<br>");
+    const totalText = `El precio total de tu carrito es: ${new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', maximumFractionDigits: 0 }).format(precioCarrito)}.`;
     const content = document.createElement("p");
-    content.textContent = `Tu carrito actual:\n${carritoText}\n${totalText}`;
+    content.innerHTML = `Tu carrito actual:<br>${carritoText}<br>${totalText}`;
     carritoDisplay.appendChild(content);
 }
 

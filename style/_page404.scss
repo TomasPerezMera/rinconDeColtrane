@@ -1,0 +1,21 @@
+.title404 {
+    margin: 20px auto;
+}
+.body404 {
+    @include text;
+}
+
+@media (max-width: 1024px) {
+    main {
+        .coltrane404 {
+            width: 100%;
+            a {
+                img {
+                    width: 80%;
+                    height: auto;
+                    padding: 5px;
+                }
+            }
+        }
+    }
+}
