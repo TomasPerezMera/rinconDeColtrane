@@ -1,4 +1,5 @@
-/*Import Product Catalog*/
+/*Importar y Pintar Product Catalog*/
+
 let catalogo = [];
 let  itemCounts = {};
 const carrito = [];
@@ -9,6 +10,16 @@ function precioARS(precio) {
         currency: 'ARS',
         maximumFractionDigits: 0
     }).format(precio);
+}
+
+let showToast = (message) => {
+    Toastify({
+        text: message,
+        style: {
+            background: "linear-gradient(to right, #2551a8, #72419d)",
+        },
+        duration: 2000
+    }).showToast();
 }
 
 fetch('./js/catalog.json')
@@ -92,10 +103,7 @@ document.addEventListener("click", (event) => {
             updateCounterDisplay(albumId);
             updateCarrito(albumId);
         } else {
-            Toastify({
-                text: "Tu carrito está lleno!",
-                duration: 2000
-                }).showToast();
+            showToast("Tu carrito está lleno!");
         }
     }
     if (event.target.classList.contains("decrease-btn")) {
@@ -108,13 +116,15 @@ document.addEventListener("click", (event) => {
     }
 });
 
-
 /* Función Carrito*/
 
 let precioCarrito = 0;
 
 function totalCarrito() {
-    return(`El precio total de tu carrito es: $` + (precioCarrito) + `.`)
+    const montoCompra = document.querySelector('.montoCompra');
+    montoCompra.innerHTML = "";
+    const totalText = `El precio total de tu compra es: ${precioARS(precioCarrito)}.`;
+    montoCompra.innerText = totalText;
 }
 
 let pintarCarrito = () => {
@@ -122,16 +132,23 @@ let pintarCarrito = () => {
     carritoDisplay.innerHTML = "";
     if (precioCarrito === 0) {
         carritoDisplay.textContent = "Tu carrito está vacío.";
+        const montoCompra = document.querySelector('.montoCompra');
+        montoCompra.innerText = "";
         return;
     }
     const carritoText = carrito.map(album => {
         const cantidad = itemCounts[album.id] || 0;
-        return `Nombre: ${album.name}, Precio: ${precioARS(album.price)}, Cantidad: ${cantidad}`;
+        return `${album.name} (x${cantidad}) = ${precioARS(album.price)}`;
     }).join("<br>");
-    const totalText = `El precio total de tu carrito es: ${precioARS(precioCarrito)}.`;
     const content = document.createElement("p");
-    content.innerHTML = `Tu carrito actual:<br>${carritoText}<br>${totalText}`;
+    content.innerHTML = `<p>
+                            Tu carrito actual:
+                        </p>
+                        <p>
+                        <br><br>${carritoText}
+                        </p>`;
     carritoDisplay.appendChild(content);
+    totalCarrito();
 }
 
 document.addEventListener("DOMContentLoaded", pintarCarrito);
@@ -147,7 +164,8 @@ function updateCarrito(albumId) {
         if (itemCounts[albumId] > 0 && !carrito.some(item => item.id === albumId)) {
             carrito.push(album);
         } else if (itemCounts[albumId] === 0) {
-            carrito = carrito.filter(item => item.id !== albumId);
+            const index = carrito.findIndex(item => item.id === albumId);
+            if (index !== -1) carrito.splice(index, 1);
         }
         pintarCarrito();
     }
@@ -159,13 +177,46 @@ function updateCarrito(albumId) {
 const carritoBtn = document.getElementById('carritoBtn');
 const trashBtn = document.getElementById('trashBtn');
 
+trashBtn.addEventListener("click", () => {
+    if (precioCarrito === 0) {
+        showToast("Error - tu carrito ya está vacío!");
+        return
+    }
+    carrito.forEach(album => {
+        itemCounts[album.id] = 0;
+    });
+    globalItemCount = 0;
+    carrito.length = 0;
+    precioCarrito = 0;
+    pintarCarrito();
+    for (const album of catalogo) {
+        const counter = document.querySelector(`.item-counter[data-id="${album.id}"]`);
+        if (counter) {
+            counter.textContent = 0;
+        }
+    }
+    showToast("Vaciaste tu carrito!")
+});
 
+carritoBtn.addEventListener("click", () => {
+    if (precioCarrito === 0) {
+        showToast("Tu carrito está vacío!");
+    } else {
+        showToast("Gracias por tu compra!");
+        carrito.forEach(album => {
+            itemCounts[album.id] = 0;
+        });
+        globalItemCount = 0;
+        carrito.length = 0;
+        precioCarrito = 0;
+        pintarCarrito();
+        for (const album of catalogo) {
+            const counter = document.querySelector(`.item-counter[data-id="${album.id}"]`);
+            if (counter) {
+                counter.textContent = 0;
+            }
+        }
+    }
+});
 
-
-/*
-console.log('ItemCounts:', itemCounts);
-console.log('pintarCarrito called:', carrito, precioCarrito);
-console.log('Carrito:', carrito);
-console.log('Precio Carrito:', precioCarrito);
-*/
 console.log(catalogo);
