@@ -12,13 +12,13 @@ function precioARS(precio) {
     }).format(precio);
 }
 
-let showToast = (message) => {
+let showToast = (message, time) => {
     Toastify({
         text: message,
         style: {
             background: "linear-gradient(to right, #2551a8, #72419d)",
         },
-        duration: 2000
+        duration: time || 2000,
     }).showToast();
 }
 
@@ -202,7 +202,9 @@ carritoBtn.addEventListener("click", () => {
     if (precioCarrito === 0) {
         showToast("Tu carrito está vacío!");
     } else {
-        showToast("Gracias por tu compra!");
+        showToast("Muchas gracias por tu compra!", 9000);
+        showToast("Tu compra consistió de: " + carrito.map(album => `${album.name} (x${itemCounts[album.id]}).`).join(", "), 5500);
+        showToast("Tu carrito ha sido vaciado.", 4000);
         carrito.forEach(album => {
             itemCounts[album.id] = 0;
         });
