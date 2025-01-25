@@ -312,7 +312,7 @@ body {
 }
 
 /*Media Queries*/
-@media (max-width: 1424px) {
+@media (max-width: 1024px) {
   body {
     width: 100%;
   }
@@ -366,7 +366,10 @@ body {
     transform: scale(1.15);
   }
 }
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
+  body .main .header h1 {
+    font-size: clamp(2.5rem, 2vw, 3rem);
+  }
   body .main .subGrid {
     display: grid;
     grid-template-columns: 1fr;
@@ -381,16 +384,7 @@ body {
     font-size: clamp(2.5rem, 2vw, 2rem);
   }
 }
-@media (max-width: 768px) {
-  body .header h1 {
-    font-size: clamp(2.5rem, 2vw, 3rem);
-  }
-  body .main .subGrid .albumContainer img {
-    max-width: 90%;
-    height: auto;
-  }
-}
-@media (max-width: 768px) {
+@media (max-width: 480px) {
   body .main .subGrid div .flipContainer {
     max-width: 80%;
     height: auto;
