@@ -33,23 +33,35 @@ fetch('./js/catalog.json')
         });
         for (const album of data) {
             let albumItem = document.createElement("div");
+            albumItem.className = `albumContainer`;
             albumItem.innerHTML = `
-            <div class="d-flex flex-column" id="album-${album.id}">
-                <img src="${album.source}" alt="${album.id}º Album Cover" height="400" width="400">
-                <h2 id="albumTitle-${album.id}">
-                    ${album.name}
-                </h2>
-                <h2 class="price">
-                    ${precioARS(album.price)}
-                </h2>
-                <div class="botones d-flex align-items-center justify-content-center">
-                    <button type="button" class="btn btn-outline-light btn-sm fw-bold d-flex justify-content-center align-items-center decrease-btn" data-id="${album.id}">-</button>
-                    <button type="button" class="btn btn-light btn-sm fw-bold mx-2 d-flex justify-content-center align-items-center item-counter" data-id="${album.id}" disabled>${album.amount}</button>
-                    <button type="button" class="btn btn-outline-light btn-sm fw-bold d-flex justify-content-center align-items-center increase-btn" data-id="${album.id}">+</button>
+            <div class="flipContainer">
+                <div class="flipCard">
+                    <div class="albumFront">
+                        <img class="albumImage" src="${album.source}" alt="${album.id}º Album Cover" height="400" width="400">
+                    </div>
+                    <div class="albumDescription">
+                        <span>${album.description}</span>
+                    </div>
                 </div>
-            </div>`
+            </div>
+            <h2 id="albumTitle-${album.id}">
+                ${album.name}
+            </h2>
+            <h2 class="price">
+                ${precioARS(album.price)}
+            </h2>
+            <div class="botones d-flex align-items-center justify-content-center">
+                <button type="button" class="btn btn-outline-light btn-sm fw-bold d-flex justify-content-center align-items-center decrease-btn" data-id="${album.id}">-</button>
+                <button type="button" class="btn btn-light btn-sm fw-bold mx-2 d-flex justify-content-center align-items-center item-counter" data-id="${album.id}" disabled>${album.amount}</button>
+                <button type="button" class="btn btn-outline-light btn-sm fw-bold d-flex justify-content-center align-items-center increase-btn" data-id="${album.id}">+</button>
+            </div>`;
             subGrid.appendChild(albumItem);
-            if(album.id == 4 || album.id == 5) {
+            const flipCard = albumItem.querySelector(".flipCard");
+            flipCard.addEventListener("click", () => {
+                flipCard.classList.toggle("flipped");
+            });
+            if(album.id == 4) {
                 const albumTitle = document.getElementById(`albumTitle-${album.id}`);
                 if (albumTitle) {
                     albumTitle.innerText = `${album.name}\n\n`;
@@ -138,7 +150,7 @@ let pintarCarrito = () => {
     }
     const carritoText = carrito.map(album => {
         const cantidad = itemCounts[album.id] || 0;
-        return `${album.name} (x${cantidad}) = ${precioARS(album.price)}`;
+        return `${album.name} (x${cantidad}) = ${precioARS(album.price*cantidad)}`;
     }).join("<br>");
     const content = document.createElement("p");
     content.innerHTML = `<p>
@@ -222,3 +234,10 @@ carritoBtn.addEventListener("click", () => {
 });
 
 console.log(catalogo);
+
+
+
+
+
+
+
