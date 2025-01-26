@@ -19,8 +19,7 @@ body {
   padding: 1vh 1vw;
   align-items: center;
 }
-
-hr {
+body hr {
   width: 80%;
   height: 2px;
   background: linear-gradient(to left, #4b6cad, #72419d);
@@ -64,7 +63,7 @@ body {
   place-items: center;
   max-width: 100%;
   height: 100vh;
-  grid-template-areas: "header" "hr1" "welcome" "hr2" "main" "hr3" "footer";
+  grid-template-areas: "header" "hr1" "welcome" "hr2" "main" "hr4" "footer";
 }
 
 .header {
@@ -149,6 +148,10 @@ body {
   width: 100%;
   height: 100%;
 }
+.main .hr3 {
+  margin: 50px auto;
+  height: 10px;
+}
 .main .purchaseDisplay {
   width: 90%;
   height: auto;
@@ -213,6 +216,7 @@ body {
   letter-spacing: 0.1em;
   min-height: 5rem;
   display: flex;
+  flex-direction: column;
   flex-grow: 1;
   width: 80%;
   height: 100%;
@@ -222,6 +226,15 @@ body {
   border-image: linear-gradient(to left, #4b6cad, #72419d) 1;
   border-image-slice: 1;
   border-radius: 50%;
+}
+.main .history .wipeHistoryBtn {
+  margin: 10px auto;
+  font-size: 20px;
+  height: 40px;
+  min-width: 40px;
+  color: white;
+  background: linear-gradient(to right, #2551a8, #72419d);
+  border: 4px solid transparent;
 }
 .main .history .historyDropdown {
   min-height: 80px;
@@ -254,10 +267,6 @@ body {
 }
 .main .history .historyDropdown .itemListado > li {
   margin-left: 20px;
-}
-
-.hr3 {
-  grid-area: hr3;
 }
 
 .footer {

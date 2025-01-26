@@ -55,7 +55,7 @@ body {
         "welcome"
         "hr2"
         "main"
-        "hr3"
+        "hr4"
         "footer";
 }
 .header { grid-area: header;
@@ -119,6 +119,10 @@ body {
         width: 100%;
         height: 100%;
     }
+    .hr3 {
+        margin: 50px auto;
+        height: 10px;
+    }
     .purchaseDisplay {
         width: 90%;
         height: auto;
@@ -161,6 +165,7 @@ body {
     .history {
         @include title;
         display: flex;
+        flex-direction: column;
         flex-grow: 1;
         width: 80%;
         height: 100%;
@@ -170,6 +175,15 @@ body {
         border-image: linear-gradient(to left, $blue, $violet) 1;
         border-image-slice: 1;
         border-radius: 50%;
+        .wipeHistoryBtn {
+            margin: 10px auto;
+            font-size: 20px;
+            height: 40px;
+            min-width: 40px;
+            color: white;
+            background: linear-gradient(to right, $blue2, $violet);
+            border: 4px solid transparent;
+        }
         .historyDropdown {
             min-height: 80px;
             height: auto;
@@ -194,7 +208,6 @@ body {
         }
     }
 }
-.hr3 { grid-area: hr3;}
 .footer { grid-area: footer;
     height: auto;
     width: auto;

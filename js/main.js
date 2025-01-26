@@ -247,24 +247,24 @@ compraEventListeners();
 /*History y Dropdown Logic*/
 
 const historyDropdown = document.querySelector('.historyDropdown');
-
-localStorage.setItem('history', JSON.stringify([]));
-
 let history = JSON.parse(localStorage.getItem('history')) || [];
+const wipeHistoryBtn = document.getElementById('wipeHistoryBtn');
 
 let updateHistory = () => {
     historyDropdown.innerHTML = "";
     if (history.length === 0) {
         historyDropdown.textContent = "No hay historial de compras.";
+        wipeHistoryBtn.style.display = "none";
         return;
     }
+    wipeHistoryBtn.style.display = "block";
     const historyList = document.createElement("ul");
     history.forEach((item, index) => {
         const listarItem = document.createElement("li");
         listarItem.classList.add("itemListado");
-        listarItem.innerHTML = `<strong>Compra ${index + 1}:</strong>${item}`
+        listarItem.innerHTML = `<strong>Compra ${index + 1}:</strong>${item.items}`
         const precioTotal = document.createElement("li");
-        precioTotal.textContent = `Precio total: ${precioARS(precioCarrito)}`;
+        precioTotal.textContent = `Precio total: ${precioARS(item.totalPrice)}`;
         listarItem.appendChild(precioTotal);
         historyList.appendChild(listarItem);
     });
@@ -282,10 +282,23 @@ let addToHistory = (carrito) => {
                     <li><strong>${album.name}</strong> - x${cantidad}, Total: ${precioARS(album.price * cantidad)}</li>
                 </ul>`;
     }).join("");
-    history.unshift(purchaseDetails);
+    const totalPrice = carrito.reduce((total, album) => total + (album.price * itemCounts[album.id]), 0);
+    const purchaseEntry = {
+        items: purchaseDetails,
+        totalPrice: totalPrice
+    };
+    console.log(purchaseEntry);
+    history.unshift(purchaseEntry);
     if (history.length > 3) {
         history.pop();
     }
     localStorage.setItem('history', JSON.stringify(history));
     updateHistory();
 }
+
+let wipeHistoryClick = () => {
+    history = [];
+    localStorage.removeItem('history');
+    updateHistory();
+}
+wipeHistoryBtn.addEventListener('click', wipeHistoryClick);

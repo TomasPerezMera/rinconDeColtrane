@@ -22,13 +22,12 @@ body {
     margin: 1vh 1vw;
     padding: 1vh 1vw;
     align-items: center;
-}
-
-hr {
-    width: 80%;
-    height: 2px;
-    background: linear-gradient(to left, $blue, $violet);
-    margin: 40px auto;
-    border: none;
-    opacity: 0.8;
+    hr {
+        width: 80%;
+        height: 2px;
+        background: linear-gradient(to left, $blue, $violet);
+        margin: 40px auto;
+        border: none;
+        opacity: 0.8;
+    }
 }
