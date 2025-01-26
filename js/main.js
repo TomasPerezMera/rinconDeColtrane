@@ -1,10 +1,10 @@
-/*Importar y Pintar Product Catalog*/
+/*Variables globales y funciones recurrentes*/
 
 let catalogo = [];
 let  itemCounts = {};
 const carrito = [];
 
-function precioARS(precio) {
+let precioARS = (precio) => {
     return new Intl.NumberFormat('es-AR', {
         style: 'currency',
         currency: 'ARS',
@@ -21,6 +21,8 @@ let showToast = (message, time) => {
         duration: time || 2000,
     }).showToast();
 }
+
+/*Importacion del Catalogo*/
 
 fetch('./js/catalog.json')
     .then(response => response.json())
@@ -65,6 +67,7 @@ fetch('./js/catalog.json')
 })
 .catch(error => console.error('Error loading JSON:', error));
 
+console.log(catalogo);
 
 /*Media Player*/
 
@@ -72,53 +75,66 @@ const musicToggle = document.getElementById("musicToggle");
 const coltraneProject = document.getElementById("coltraneProject");
 const musicImg = document.getElementById("musicImg");
 
-musicToggle.addEventListener('click', () => {
+let musicToggleClick = () => {
     if (coltraneProject.paused) {
         coltraneProject.play();
         musicImg.src = "./assets/pauseButton.png";
-    } else {
-        coltraneProject.pause();
-        musicImg.src = "./assets/playButton.png";
+        return;
     }
-})
-
-coltraneProject.addEventListener('ended', () => {
+    coltraneProject.pause();
     musicImg.src = "./assets/playButton.png";
-});
+}
+musicToggle.addEventListener('click', musicToggleClick);
+
+const musicEnd = () => {
+    musicImg.src = "./assets/playButton.png";
+    showToast("Gracias por escuchar la selección de obras de Coltrane!", 3000);
+};
+coltraneProject.addEventListener('ended', musicEnd);
 
 
-/*Asignación de Botones*/
+/*Lógica y Asignación de Botones*/
 
 let globalItemCount = 0;
+let albumId = null;
 
-function updateCounterDisplay(albumId) {
+const updateCounterDisplay = (albumId) => {
     const counter = document.querySelector(`.item-counter[data-id="${albumId}"]`);
     if (counter) {
         counter.textContent = itemCounts[albumId] || 0;
     }
-}
+};
+
+const sumarItem = (albumId) => {
+    if (itemCounts[albumId] < 5 && globalItemCount < 5) {
+        itemCounts[albumId]++;
+        globalItemCount++;
+        updateCounterDisplay(albumId);
+        updateCarrito(albumId);
+    } else {
+        showToast("Tu carrito está lleno!");
+    }
+};
+
+const restarItem = (albumId) => {
+    if (itemCounts[albumId] > 0) {
+        itemCounts[albumId]--;
+        globalItemCount--;
+        updateCounterDisplay(albumId);
+        updateCarrito(albumId);
+    }
+};
+
+/*Event Listeners de los Botones de Cantidad*/
 
 document.addEventListener("click", (event) => {
-    const albumId = parseInt(event.target.getAttribute("data-id"), 10);
+    albumId = parseInt(event.target.getAttribute("data-id"), 10);
     if (!albumId) return;
     itemCounts[albumId] = itemCounts[albumId] || 0;
     if (event.target.classList.contains("increase-btn")) {
-        if (itemCounts[albumId] < 5 && globalItemCount < 5) {
-            itemCounts[albumId]++;
-            globalItemCount++;
-            updateCounterDisplay(albumId);
-            updateCarrito(albumId);
-        } else {
-            showToast("Tu carrito está lleno!");
-        }
-    }
-    if (event.target.classList.contains("decrease-btn")) {
-        if (itemCounts[albumId] > 0) {
-            itemCounts[albumId]--;
-            globalItemCount--;
-            updateCounterDisplay(albumId);
-            updateCarrito (albumId);
-        }
+        sumarItem(albumId);
+    } else if (event.target.classList.contains("decrease-btn")) {
+        restarItem(albumId);
     }
 });
 
@@ -126,7 +142,23 @@ document.addEventListener("click", (event) => {
 
 let precioCarrito = 0;
 
-function totalCarrito() {
+let wipeCarrito = () => {
+    carrito.forEach(album => {
+        itemCounts[album.id] = 0;
+    });
+    carrito.length = 0;
+    precioCarrito = 0;
+    globalItemCount = 0;
+    for (const album of catalogo) {
+        const counter = document.querySelector(`.item-counter[data-id="${album.id}"]`);
+        if (counter) {
+            counter.textContent = 0;
+        }
+    }
+    pintarCarrito();
+}
+
+let totalCarrito = () => {
     const montoCompra = document.querySelector('.montoCompra');
     montoCompra.innerHTML = "";
     const totalText = `El precio total de tu compra es: ${precioARS(precioCarrito)}.`;
@@ -156,11 +188,9 @@ let pintarCarrito = () => {
     carritoDisplay.appendChild(content);
     totalCarrito();
 }
-
 document.addEventListener("DOMContentLoaded", pintarCarrito);
 
-
-function updateCarrito(albumId) {
+let updateCarrito = (albumId) => {
     const album = catalogo.find(item => item.id === albumId);
     if (album) {
         precioCarrito = Object.keys(itemCounts).reduce((total, id) => {
@@ -178,53 +208,41 @@ function updateCarrito(albumId) {
     return;
 }
 
-/*Botones de Compra*/
+/*Lógica de Botones de Compra*/
 
 const carritoBtn = document.getElementById('carritoBtn');
 const trashBtn = document.getElementById('trashBtn');
 
-trashBtn.addEventListener("click", () => {
+const trashBtnClick = () => {
     if (precioCarrito === 0) {
         showToast("Error - tu carrito ya está vacío!");
         return
     }
-    carrito.forEach(album => {
-        itemCounts[album.id] = 0;
-    });
-    globalItemCount = 0;
-    carrito.length = 0;
-    precioCarrito = 0;
-    pintarCarrito();
-    for (const album of catalogo) {
-        const counter = document.querySelector(`.item-counter[data-id="${album.id}"]`);
-        if (counter) {
-            counter.textContent = 0;
-        }
-    }
+    wipeCarrito();
     showToast("Vaciaste tu carrito!")
-});
+}
 
-carritoBtn.addEventListener("click", () => {
+const carritoBtnClick = () => {
     if (precioCarrito === 0) {
         showToast("Tu carrito está vacío!");
-    } else {
-        showToast("Muchas gracias por tu compra!", 9000);
-        showToast("Tu compra consistió de: " + carrito.map(album => `${album.name} (x${itemCounts[album.id]})`).join(", ")+".", 5500);
-        showToast("Tu carrito ha sido vaciado.", 4000);
-        carrito.forEach(album => {
-            itemCounts[album.id] = 0;
-        });
-        globalItemCount = 0;
-        carrito.length = 0;
-        precioCarrito = 0;
-        pintarCarrito();
-        for (const album of catalogo) {
-            const counter = document.querySelector(`.item-counter[data-id="${album.id}"]`);
-            if (counter) {
-                counter.textContent = 0;
-            }
-        }
+        return;
     }
-});
+    showToast("Muchas gracias por tu compra!", 9000);
+    showToast("Tu compra consistió de: " + carrito.map(album => `${album.name} (x${itemCounts[album.id]})`).join(", ")+".", 5500);
+    showToast("Tu carrito ha sido vaciado.", 4000);
+    wipeCarrito();
+}
 
-console.log(catalogo);
+/*Event Listeners de la Compra*/
+const compraEventListeners = () => {
+    carritoBtn.addEventListener("click", carritoBtnClick);
+    trashBtn.addEventListener("click", trashBtnClick);
+};
+compraEventListeners();
+
+
+/*History y Dropdown Logic*/
+
+const historyDropdown = document.querySelector('.historyDropdown');
+
+
