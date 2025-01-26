@@ -45,7 +45,7 @@ fetch('./js/catalog.json')
                     </div>
                 </div>
             </div>
-            <h2 id="albumTitle-${album.id}">
+            <h2 id="albumTitle-${album.id}" class="albumTitle">
                 ${album.name}
             </h2>
             <h2 class="price">
@@ -61,12 +61,6 @@ fetch('./js/catalog.json')
             flipCard.addEventListener("click", () => {
                 flipCard.classList.toggle("flipped");
             });
-            if(album.id == 4) {
-                const albumTitle = document.getElementById(`albumTitle-${album.id}`);
-                if (albumTitle) {
-                    albumTitle.innerText = `${album.name}\n\n`;
-                }
-            }
         }
 })
 .catch(error => console.error('Error loading JSON:', error));

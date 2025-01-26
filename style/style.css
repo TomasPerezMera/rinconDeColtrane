@@ -149,15 +149,6 @@ body {
   width: 100%;
   height: 100%;
 }
-.main .subGrid h2 {
-  font-size: clamp(2.5rem, 2vw, 1.5rem);
-  text-align: center;
-  overflow-wrap: break-word;
-  word-break: break-word;
-  margin: 30px auto 10px;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3), 0px 0px 10px rgba(66, 135, 245, 0.6);
-  letter-spacing: 0.1em;
-}
 .main .purchaseDisplay {
   width: 90%;
   height: auto;
@@ -232,6 +223,7 @@ body {
   transform: scale(1.15);
 }
 
+/*Album Card Formatting*/
 .albumContainer {
   display: flex;
   flex-direction: column;
@@ -301,6 +293,22 @@ body {
 .albumContainer .flipContainer .flipCard.flipped .albumImage {
   transform: scale(0.5);
 }
+.albumContainer .albumTitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(2rem, 2vw, 1.5rem);
+  text-align: center;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  margin: 40px auto 10px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3), 0px 0px 10px rgba(66, 135, 245, 0.6);
+  letter-spacing: 0.1em;
+  min-height: 5rem;
+}
+.albumContainer .price {
+  margin: 2rem auto;
+}
 .albumContainer .botones {
   margin: 10px auto;
 }
@@ -326,13 +334,9 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-auto-rows: auto;
-    place-items: center;
-    gap: 10px 5px;
-    margin: 5px auto;
-  }
-  body .main .subGrid h2 {
-    font-size: clamp(3rem, 2vw, 1.5rem);
-    margin: 5rem auto 1rem;
+    place-items: justify;
+    gap: 20px 10px;
+    margin: 10px auto;
   }
   body .main .subGrid .albumContainer .flipContainer {
     margin: 0px auto;
@@ -340,6 +344,11 @@ body {
   body .main .subGrid .albumContainer .flipContainer .flipCard .albumDescription span {
     overflow: scroll;
     height: 100%;
+    font-size: clamp(2rem, 2vw, 1.5rem);
+  }
+  body .main .subGrid .albumContainer .albumTitle {
+    margin: 1rem auto;
+    min-height: 8rem;
     font-size: clamp(2rem, 2vw, 1.5rem);
   }
   body .main .subGrid .albumContainer .botones {
@@ -377,8 +386,9 @@ body {
     place-items: center;
     gap: 50px 2px;
   }
-  body .main .subGrid h2 {
-    margin: 3rem auto 1rem;
+  body .main .subGrid .albumContainer .albumTitle {
+    min-height: 7rem;
+    font-size: clamp(2.5rem, 2vw, 2rem);
   }
   body .main .subGrid .price {
     font-size: clamp(2.5rem, 2vw, 2rem);
