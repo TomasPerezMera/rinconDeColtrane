@@ -230,6 +230,9 @@ const carritoBtnClick = () => {
     showToast("Muchas gracias por tu compra!", 9000);
     showToast("Tu compra consistió de: " + carrito.map(album => `${album.name} (x${itemCounts[album.id]})`).join(", ")+".", 5500);
     showToast("Tu carrito ha sido vaciado.", 4000);
+    addToHistory(carrito);
+    console.log(history);
+    console.log(carrito);
     wipeCarrito();
 }
 
@@ -245,4 +248,44 @@ compraEventListeners();
 
 const historyDropdown = document.querySelector('.historyDropdown');
 
+localStorage.setItem('history', JSON.stringify([]));
 
+let history = JSON.parse(localStorage.getItem('history')) || [];
+
+let updateHistory = () => {
+    historyDropdown.innerHTML = "";
+    if (history.length === 0) {
+        historyDropdown.textContent = "No hay historial de compras.";
+        return;
+    }
+    const historyList = document.createElement("ul");
+    history.forEach((item, index) => {
+        const listarItem = document.createElement("li");
+        listarItem.classList.add("itemListado");
+        listarItem.innerHTML = `<strong>Compra ${index + 1}:</strong>${item}`
+        const precioTotal = document.createElement("li");
+        precioTotal.textContent = `Precio total: ${precioARS(precioCarrito)}`;
+        listarItem.appendChild(precioTotal);
+        historyList.appendChild(listarItem);
+    });
+    const heading = document.createElement("p");
+    heading.textContent = "Historial de Compras:";
+    historyDropdown.appendChild(heading);
+    historyDropdown.appendChild(historyList);
+}
+updateHistory();
+
+let addToHistory = (carrito) => {
+    const purchaseDetails = carrito.map(album => {
+        const cantidad = itemCounts[album.id];
+        return `<ul>
+                    <li><strong>${album.name}</strong> - x${cantidad}, Total: ${precioARS(album.price * cantidad)}</li>
+                </ul>`;
+    }).join("");
+    history.unshift(purchaseDetails);
+    if (history.length > 3) {
+        history.pop();
+    }
+    localStorage.setItem('history', JSON.stringify(history));
+    updateHistory();
+}
