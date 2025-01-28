@@ -3,7 +3,7 @@
 @use "page404";
 
 $blue: #4b6cad;
-$blue2: #2551a8;
+$darkBlue: #2551a8;
 $violet: #72419d;
 
 @mixin separator{
@@ -62,7 +62,7 @@ body {
     margin: 40px auto 20px;
     h1 {
         font-size: clamp(4rem, 2vw, 6rem);
-        background: linear-gradient(to left, $blue2, $violet);
+        background: linear-gradient(to left, $darkBlue, $violet);
         -webkit-background-clip: text;
         background-clip: text;
         -webkit-text-fill-color: transparent;
@@ -85,7 +85,7 @@ body {
     }
     .mediaPlayer {
         width: 40%;
-        margin: 40px auto;
+        margin: 10px auto;
         button {
             width: 150px;
             margin: 0px auto 10px;
@@ -174,15 +174,16 @@ body {
         border: 4px solid transparent;
         border-image: linear-gradient(to left, $blue, $violet) 1;
         border-image-slice: 1;
-        border-radius: 50%;
         .wipeHistoryBtn {
             margin: 10px auto;
-            font-size: 20px;
+            padding: 10px;
+            text-align: center;
+            font-size: 16px;
             height: 40px;
             min-width: 40px;
             color: white;
-            background: linear-gradient(to right, $blue2, $violet);
-            border: 4px solid transparent;
+            background: linear-gradient(to right, $darkBlue, $violet);
+            border: 4px solid black;
         }
         .historyDropdown {
             min-height: 80px;
