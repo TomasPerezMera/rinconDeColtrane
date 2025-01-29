@@ -7,7 +7,7 @@ $darkBlue: #2551a8;
 $violet: #72419d;
 
 @mixin separator{
-    width: 100px;
+    width: 90px;
     height: 5px;
     padding: 10px;
     margin: 100px auto;
@@ -177,13 +177,12 @@ body {
         .wipeHistoryBtn {
             margin: 10px auto;
             padding: 10px;
-            text-align: center;
-            font-size: 16px;
-            height: 40px;
+            font-size: calc(1rem + 0.5vw);
             min-width: 40px;
             color: white;
             background: linear-gradient(to right, $darkBlue, $violet);
             border: 4px solid black;
+            border-radius: 10px;
         }
         .historyDropdown {
             min-height: 80px;
@@ -199,9 +198,13 @@ body {
                 padding-left: 20px;
                 margin-bottom: 20px;
                 list-style-type: none;
+                .itemListado {
+                    margin-bottom: 30px;
+                }
             }
-            .itemListado {
-                margin-bottom: 30px;
+            .precioTotal {
+                margin: 20px auto;
+                @include text;
             }
             .itemListado > li {
                 margin-left: 20px;

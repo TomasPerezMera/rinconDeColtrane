@@ -27,7 +27,6 @@ let showToast = (message, time) => {
 fetch('./js/catalog.json')
     .then(response => response.json())
     .then(data => {
-        console.log(data);
         catalogo = data;
         const subGrid = document.querySelector('.subGrid');
         catalogo.forEach(album => {
@@ -66,8 +65,6 @@ fetch('./js/catalog.json')
         }
 })
 .catch(error => console.error('Error loading JSON:', error));
-
-console.log(catalogo);
 
 /*Media Player*/
 
@@ -149,12 +146,12 @@ let wipeCarrito = () => {
     carrito.length = 0;
     precioCarrito = 0;
     globalItemCount = 0;
-    for (const album of catalogo) {
+    catalogo.forEach(album => {
         const counter = document.querySelector(`.item-counter[data-id="${album.id}"]`);
         if (counter) {
             counter.textContent = 0;
         }
-    }
+    });
     pintarCarrito();
 }
 
@@ -231,8 +228,6 @@ const carritoBtnClick = () => {
     showToast("Tu compra consistió de: " + carrito.map(album => `${album.name} (x${itemCounts[album.id]})`).join(", ")+".", 5500);
     showToast("Tu carrito ha sido vaciado.", 4000);
     addToHistory(carrito);
-    console.log(history);
-    console.log(carrito);
     wipeCarrito();
 }
 
@@ -265,6 +260,7 @@ let updateHistory = () => {
         listarItem.innerHTML = `<strong>Compra ${index + 1}:</strong>${item.items}`
         const precioTotal = document.createElement("li");
         precioTotal.textContent = `Precio total: ${precioARS(item.totalPrice)}`;
+        precioTotal.classList.add("precioTotal");
         listarItem.appendChild(precioTotal);
         historyList.appendChild(listarItem);
     });
@@ -287,7 +283,6 @@ let addToHistory = (carrito) => {
         items: purchaseDetails,
         totalPrice: totalPrice
     };
-    console.log(purchaseEntry);
     history.unshift(purchaseEntry);
     if (history.length > 3) {
         history.pop();

@@ -117,7 +117,7 @@ body {
   height: auto;
 }
 .welcome .separator {
-  width: 100px;
+  width: 90px;
   height: 5px;
   padding: 10px;
   margin: 100px auto;
@@ -229,13 +229,12 @@ body {
 .main .history .wipeHistoryBtn {
   margin: 10px auto;
   padding: 10px;
-  text-align: center;
-  font-size: 16px;
-  height: 40px;
+  font-size: calc(1rem + 0.5vw);
   min-width: 40px;
   color: white;
   background: linear-gradient(to right, #2551a8, #72419d);
   border: 4px solid black;
+  border-radius: 10px;
 }
 .main .history .historyDropdown {
   min-height: 80px;
@@ -263,8 +262,19 @@ body {
   margin-bottom: 20px;
   list-style-type: none;
 }
-.main .history .historyDropdown .itemListado {
+.main .history .historyDropdown ul .itemListado {
   margin-bottom: 30px;
+}
+.main .history .historyDropdown .precioTotal {
+  margin: 20px auto;
+  font-size: clamp(1.5rem, 2vw, 3rem);
+  max-width: 90vw;
+  color: white;
+  margin: 30px 40px;
+  text-align: center;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  letter-spacing: 0.08em;
 }
 .main .history .historyDropdown .itemListado > li {
   margin-left: 20px;
