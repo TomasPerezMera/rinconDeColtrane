@@ -191,23 +191,29 @@ body {
             padding: 10px;
             text-align: left;
             p {
-                text-align: center;
                 @include title;
+                justify-content: left;
+                margin: 15px auto;
+                .historyTitle {
+                    text-decoration: underline;
+                }
             }
-            ul {
+            .historyList {
                 padding-left: 20px;
                 margin-bottom: 20px;
                 list-style-type: none;
-                .itemListado {
+                .historyItem {
                     margin-bottom: 30px;
+                    margin-left: 20px;
+                    text-align: right;
+                    max-width: 100%;
+                    .totalPrice {
+                        @include text;
+                        text-align: right;
+                        justify-content: right;
+                        font-style: italic;
+                    }
                 }
-            }
-            .precioTotal {
-                margin: 20px auto;
-                @include text;
-            }
-            .itemListado > li {
-                margin-left: 20px;
             }
         }
     }
@@ -366,6 +372,22 @@ body {
                     margin: 2rem auto;
                 }
             }
+            .history {
+                .historyDropdown {
+                    p {
+                        font-size: clamp(1.5rem, 2vw, 1.5rem);
+                        word-break: keep-all;
+                        max-width: 100%;
+                    }
+                    .historyList {
+                        .historyItem {
+                            .totalPrice {
+                                font-size: clamp(1.5rem, 2vw, 1.5rem);
+                            }
+                        }
+                    }
+                }
+            }
         }
         .footer {
             height: auto;
@@ -411,6 +433,28 @@ body {
                 }
                 .price {
                     font-size: clamp(2.5rem, 2vw, 2rem);
+                }
+            }
+            .history {
+                .historyDropdown {
+                    p {
+                        font-size: clamp(1.2rem, 2vw, 1.5rem);
+                        word-break: keep-all;
+                        width: 60%;
+                    }
+                    .historyList {
+                        .historyItem {
+                            margin: 5px auto;
+                            p {
+                                width: 100%;
+                            }
+                            .totalPrice {
+                                font-size: clamp(1.2rem, 2vw, 1.5rem);
+                                width: 80%;
+                                margin: 10px auto;
+                            }
+                        }
+                    }
                 }
             }
         }

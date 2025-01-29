@@ -173,7 +173,7 @@ let pintarCarrito = () => {
     }
     const carritoText = carrito.map(album => {
         const cantidad = itemCounts[album.id] || 0;
-        return `${album.name} (x${cantidad}) = ${precioARS(album.price*cantidad)}`;
+        return `${album.name} - x${cantidad} = ${precioARS(album.price*cantidad)}`;
     }).join("<br>");
     const content = document.createElement("p");
     content.innerHTML = `<p>
@@ -242,10 +242,10 @@ compraEventListeners();
 /*History y Dropdown Logic*/
 
 const historyDropdown = document.querySelector('.historyDropdown');
-let history = JSON.parse(localStorage.getItem('history')) || [];
 const wipeHistoryBtn = document.getElementById('wipeHistoryBtn');
+let history = JSON.parse(localStorage.getItem('history')) || [];
 
-let updateHistory = () => {
+const updateHistory = () => {
     historyDropdown.innerHTML = "";
     if (history.length === 0) {
         historyDropdown.textContent = "No hay historial de compras.";
@@ -253,43 +253,35 @@ let updateHistory = () => {
         return;
     }
     wipeHistoryBtn.style.display = "block";
-    const historyList = document.createElement("ul");
-    history.forEach((item, index) => {
-        const listarItem = document.createElement("li");
-        listarItem.classList.add("itemListado");
-        listarItem.innerHTML = `<strong>Compra ${index + 1}:</strong>${item.items}`
-        const precioTotal = document.createElement("li");
-        precioTotal.textContent = `Precio total: ${precioARS(item.totalPrice)}`;
-        precioTotal.classList.add("precioTotal");
-        listarItem.appendChild(precioTotal);
-        historyList.appendChild(listarItem);
-    });
-    const heading = document.createElement("p");
-    heading.textContent = "Historial de Compras:";
-    historyDropdown.appendChild(heading);
-    historyDropdown.appendChild(historyList);
-}
+    historyDropdown.innerHTML = `
+        <p><strong class="historyTitle">Historial de Compras:</strong></p>
+        <ul class="historyList">
+            ${history.map((entry, index) => `
+                <li class="historyItem">
+                    <p><strong>Compra ${index + 1}:</strong></p>
+                    ${entry.items}
+                    <p class="totalPrice">Precio total: ${precioARS(entry.totalPrice)}</p>
+                </li>
+            `).join("")}
+        </ul>
+    `;
+};
+
 updateHistory();
 
-let addToHistory = (carrito) => {
+const addToHistory = (carrito) => {
     const purchaseDetails = carrito.map(album => {
         const cantidad = itemCounts[album.id];
-        return `<ul>
-                    <li><strong>${album.name}</strong> - x${cantidad}, Total: ${precioARS(album.price * cantidad)}</li>
-                </ul>`;
+        return `<p><strong>${album.name}&nbsp;</strong>x${cantidad}, Total: ${precioARS(album.price * cantidad)}</p>`;
     }).join("");
     const totalPrice = carrito.reduce((total, album) => total + (album.price * itemCounts[album.id]), 0);
-    const purchaseEntry = {
-        items: purchaseDetails,
-        totalPrice: totalPrice
-    };
+    const purchaseEntry = { items: purchaseDetails, totalPrice };
     history.unshift(purchaseEntry);
-    if (history.length > 3) {
-        history.pop();
-    }
+    if (history.length > 3) history.pop();
     localStorage.setItem('history', JSON.stringify(history));
     updateHistory();
-}
+};
+
 
 let wipeHistoryClick = () => {
     history = [];

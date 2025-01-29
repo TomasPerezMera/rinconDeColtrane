@@ -244,7 +244,6 @@ body {
   text-align: left;
 }
 .main .history .historyDropdown p {
-  text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -256,17 +255,24 @@ body {
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3), 0px 0px 10px rgba(66, 135, 245, 0.6);
   letter-spacing: 0.1em;
   min-height: 5rem;
+  justify-content: left;
+  margin: 15px auto;
 }
-.main .history .historyDropdown ul {
+.main .history .historyDropdown p .historyTitle {
+  text-decoration: underline;
+}
+.main .history .historyDropdown .historyList {
   padding-left: 20px;
   margin-bottom: 20px;
   list-style-type: none;
 }
-.main .history .historyDropdown ul .itemListado {
+.main .history .historyDropdown .historyList .historyItem {
   margin-bottom: 30px;
+  margin-left: 20px;
+  text-align: right;
+  max-width: 100%;
 }
-.main .history .historyDropdown .precioTotal {
-  margin: 20px auto;
+.main .history .historyDropdown .historyList .historyItem .totalPrice {
   font-size: clamp(1.5rem, 2vw, 3rem);
   max-width: 90vw;
   color: white;
@@ -275,9 +281,9 @@ body {
   overflow-wrap: break-word;
   word-break: break-word;
   letter-spacing: 0.08em;
-}
-.main .history .historyDropdown .itemListado > li {
-  margin-left: 20px;
+  text-align: right;
+  justify-content: right;
+  font-style: italic;
 }
 
 .footer {
@@ -435,6 +441,14 @@ body {
     font-size: clamp(2.5rem, 2vw, 1.5rem);
     margin: 2rem auto;
   }
+  body .main .history .historyDropdown p {
+    font-size: clamp(1.5rem, 2vw, 1.5rem);
+    word-break: keep-all;
+    max-width: 100%;
+  }
+  body .main .history .historyDropdown .historyList .historyItem .totalPrice {
+    font-size: clamp(1.5rem, 2vw, 1.5rem);
+  }
   body .footer {
     height: auto;
     min-width: 80%;
@@ -468,6 +482,22 @@ body {
   }
   body .main .subGrid .price {
     font-size: clamp(2.5rem, 2vw, 2rem);
+  }
+  body .main .history .historyDropdown p {
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    word-break: keep-all;
+    width: 60%;
+  }
+  body .main .history .historyDropdown .historyList .historyItem {
+    margin: 5px auto;
+  }
+  body .main .history .historyDropdown .historyList .historyItem p {
+    width: 100%;
+  }
+  body .main .history .historyDropdown .historyList .historyItem .totalPrice {
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    width: 80%;
+    margin: 10px auto;
   }
 }
 @media (max-width: 480px) {
